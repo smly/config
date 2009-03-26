@@ -1,0 +1,5 @@
+export GTK_IM_MODULE='uim'
+export GTK_IM_MODULE_FILE=~/.immodules
+export QT_IM_MODULE='uim'
+uim-xim &
+export XMODIFIERS=@im='uim'

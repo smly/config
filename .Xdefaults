@@ -1,0 +1,15 @@
+urxvt.font: [codeset=ISO8859]x:-mplus-gothic-medium-r-normal--12-*-*-*-*-*-iso8859-*, \
+            [codeset=JISX0201]x:-mplus-gothic-medium-r-normal--12-*-*-*-*-*-jisx0201.1976-*, \
+            [codeset=JISX0208]x:-mplus-gothic-medium-r-normal--12-*-*-*-*-*-jisx0208.1990-*, 7x12
+
+Rxvt.lineSpace: 0
+Rxvt.tintColor: gray70
+Rxvt.foreground: gray80
+Rxvt.background: gray10
+Rxvt.cursorColor: goldenrod
+Rxvt.fading: 50
+Rxvt.shading: 30
+Rxvt.scrollBar: false
+Rxvt.colorBD: azure
+Rxvt.colorIT: pink
+Rxvt.colorUL: MistyRose

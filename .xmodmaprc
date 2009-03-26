@@ -1,0 +1,10 @@
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+
+!!
+
+keycode 131 = Muhenkan
+add Mod4 = Muhenkan
+!! add Mod4 = Alt_L
+add Mod4 = Muhenkan
