@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+PROG=$0
+usage() {
+	print "usage:"
+	print "$PROG [-x] [url]"
+	print ""
+	print -- "-x:\n\tgrab url from X11 clipboard"
+}
+[ $# -eq 0 ] &&                                        usage && exit
+[ $# -gt 1 ] && print "Only one parameter allowed." && usage && exit 3
+zurlencode() {
+	setopt localoptions extendedglob
+	input=( ${(s::)1} )
+	URLREPLY=${(j::)input/(#b)([^A-Za-z0-9_.!~*\'\(\)-])/%${(l:2::0:)$(([##16]#match))}}
+}
+if [[ "$1" = "-x" ]] ;then
+	URL=$(xclip -o 2>/dev/null)
+else
+	URL=$1
+fi
+autoload -U tcp_open
+TCP_SILENT=1
+zurlencode $URL
+tcp_open -q urlalacon.com 80 urlalacon || return 2
+tcp_send -s urlalacon -- "GET /?url=${URLREPLY}&alacon=1 HTTP/1.1"
+tcp_send -s urlalacon -- "Host: urlalacon.com"
+tcp_send -s urlalacon -- "Accept-Charset: utf-8"
+tcp_send -s urlalacon -- ""
+tcp_read -b -d -s urlalacon
+tcp_close -q urlalacon
+print ${${tcp_lines[149]/*href=/}/>*}

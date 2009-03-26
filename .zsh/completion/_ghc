@@ -1,0 +1,247 @@
+#compdef ghc
+
+# via http://madscientist.jp/~ikegami/haskell/
+
+typeset -A opt_args
+local context state expl line ret=1
+local packages
+local osargs machargs
+
+packages=($(_call_program pkg ghc-pkg list | \
+             awk 'BEGIN {RS=" "; ORS=" "}
+                  /\(.*\)/ {
+                    if(match($0, /\(.*\)/) != 0) {
+                     print substr($0, RSTART+1, RLENGTH-2)
+                    }}' 2> /dev/null))
+
+osargs=()
+case "$OSTYPE" in
+cygwin)
+  osargs=( 
+    '--mk-dll[DLL-creation mode]'
+    '-pgmdll[Use cmd as the DLL generator]:cmd:_command_names'
+    '-optdll[Pass option to the DLL generator]:option' 
+  )
+  ;;
+darwin*)
+  osargs=(
+    '-framework[Link in the framework name. This option corresponds to the -framework option for Apples Linker]:name'
+    '-framework-path[Add dir to the list of directories searched for frameworks. This option corresponds to the -F option for Apples Linker]:name'
+  )
+  ;;
+esac
+
+machargs=()
+case "$MACHTYPE" in
+sparc)
+  machargs=(
+    '-mv8[Enable SPARC version 8]'
+  )
+  ;;
+i[345]86)
+  machargs=(
+    '(-monly-regs -monly-32-regs)'{-monly-regs,-monly-32-regs}'[Give some registers back to the C compiler (x86 only)]'
+  )
+  ;;
+esac
+
+_arguments -C -M 'L:|-{f}no-=-{f} r:|[_-]=* r:|=*' \
+    '(-\? --help)'{-\?,--help}'[show help messages]' \
+    '-v[verbose]:verbose level' \
+    '(-V --version --numeric-version)'{-V,--version,--numeric-version}'[version]' \
+    '--print-libdir[display GHC library directory]' \
+    '-ferror-spans[output full span in error messages]' \
+    '-E[Stop after preprocessing (.hspp file)]' \
+    '-C[Stop after generating C (.hc file)]' \
+    '-S[Stop after generating assembly (.s file)]' \
+    '-c[Stop after compiling object code (.o file)]' \
+    '--interactive[Interactive mode]' \
+    '--make[Build a multi-module Haskell program, automatically figuring out dependencies]' \
+    '-e[Evaluate]:Haskell expression' \
+    '-M[Generate dependency information suitable for use in a Makefile]' \
+    '-hcsuf[set the suffix to use for intermediate C files]:suffix' \
+    '-hidir[set directory for interface files]:dir:_files -/' \
+    '-hisuf[set the suffix to use for interface files]:suffix' \
+    '-o[output file]:output file:_files -g "^*.(hs|lhs)(-.)"'\
+    '-odir[set output directory]:dir:_files -/' \
+    '-ohi[set the filename in which to put the interface]:filename:_files' \
+    '-osuf[set the output file suffix]:suffix' \
+    -keep-hc-file \
+    -keep-s-file \
+    -keep-raw-s-file \
+    -keep-tmp-files \
+    '-tmpdir:dir:_files -/' \
+    '-i[add to import path]:dir:_files -/' \
+    -ddump-hi \
+    -ddump-hi-diffs \
+    -ddump-minimal-imports \
+    '--show-iface[Read the interface in file and dump it as text to stdout]:file:_files -g "^*.(hi)(-.)"' \
+    -no-recomp \
+    -recomp \
+    -ignore-dot-ghci \
+    -read-dot-ghci \
+    '-package[Expose package]:package:($packages)' \
+    '-hide-package[Hide package]:package($packages):' \
+    '-ignore-package[Ignore package]:package($packages)' \
+    '-package-conf[Load more package]:file:_files' \
+    -no-user-package-conf \
+    -fallow-overlapping-instances \
+    -fallow-undecidable-instances \
+    -fallow-incoherent-instances \
+    -farrows \
+    '-fcontext-stack:stack limit' \
+    {-ffi,-fffi} \
+    -fgenerics \
+    -fglasgow-exts \
+    -fignore-asserts \
+    -fimplicit-params \
+    -firrefutable-tuples \
+    -fimplicit-prelude \
+    -fmonomorphism-restriction \
+    -fscoped-type-variables \
+    -fth \
+    '(-w)-W' \
+    '(-W -Wall)-w' \
+    '(-w)-Wall' \
+    -Werror \
+    -fwarn-deprecations \
+    -fwarn-duplicate-exports \
+    -fwarn-hi-shadowing \
+    -fwarn-incomplete-patterns \
+    -fwarn-incomplete-record-updates \
+    -fwarn-misc \
+    -fwarn-missing-fields \
+    -fwarn-missing-methods \
+    -fwarn-missing-signatures \
+    -fwarn-name-shadowing \
+    -fwarn-orphans \
+    -fwarn-overlapping-patterns \
+    -fwarn-simple-patterns \
+    -fwarn-type-defaults \
+    -fwarn-unused-binds \
+    -fwarn-unused-imports \
+    -fwarn-unused-matches \
+    '-O[Set optimisation level]:level' \
+    -fcase-merge \
+    -fdicts-strict \
+    -fdo-eta-reduction \
+    -fdo-lambda-eta-expansion \
+    -fexcess-precision \
+    -frules-off \
+    -fignore-asserts \
+    -fignore-interface-pragmas \
+    -fignore-interface-pragmas \
+    -fliberate-case-threshold \
+    -fomit-interface-pragmas \
+    -fmax-worker-args \
+    -fmax-simplifier-iterations \
+    -fno-state-hack \
+    -fcpr \
+    -fno-cse \
+    -ffull-laziness \
+    -fno-pre-inlining \
+    -fno-strictness \
+    -fnumbers-strict \
+    -funbox-strict-fields \
+    -funfolding-creation-threshold \
+    -funfolding-fun-discount \
+    -funfolding-keeness-factor \
+    -funfolding-update-in-place \
+    -funfolding-use-threshold \
+    -auto \
+    -auto-all \
+    -auto-dicts \
+    -caf-all \
+    '-prof[Turn on profiling]' \
+    '-ticky[Turn on ticky-ticky profiling]' \
+    -gransim \
+    '-parallel[Enable Parallel Haskell]' \
+    -smp \
+    '-cpp[Run the C pre-processor on Haskell source fils]' \
+    '-D[Define a symbol in the C pre-processor]:symbol' \
+    '-U[Undefine a symbol in the C pre-processor]:symbol' \
+    '-I[Add to the directory search list for #include files]:dir:_files -/' \
+    '-#include[Include file when compiling .hc file]:file:_files' \
+    '(-fvia-C)-fasm' \
+    '(-fasm)-fvia-C' \
+    -fno-code \
+    '(-static)-dynamic[Use dynamic Haskell libraries]' \
+    '-l[Link in library]:lib' \
+    '-L[Add to the list of directories searched for libraries]:dir:_files -/' \
+    '(-no-hs-main)-main-is[Set main function]:name' \
+    '(-main-is)-no-hs-main' \
+    -no-link \
+    -split-objs \
+    '(-dynamic)-static' \
+    -threaded \
+    '-debug[Use the debuging runtime]' \
+    '-pgmL[Use cmd as the literate pre-processor]:cmd:_command_names' \
+    '-pgmP[Use cmd as the C pre-processor (with -cpp only)]:cmd:_command_names' \
+    '-pgmc[Use cmd as the C compiler]:cmd:_command_names' \
+    '-pgma[Use cmd as the assembler]:cmd:_command_names' \
+    '-pgml[Use cmd as the linker]:cmd:_command_names' \
+    '-pgmdep[Use cmd as the dependency generator]:cmd:_command_names' \
+    '-pgmF[Use cmd as the pre-processor (with -F only)]:cmd:_command_names' \
+    '-optL[Pass option to the literate pre-processor]:option' \
+    '-optP[Pass option to cpp (with -cpp only)]:option' \
+    '-optF[Pass option to the custom pre-processor]:option' \
+    '-optc[Pass option to the C compiler]:option' \
+    '-opta[Pass option to the assembler]:option' \
+    '-optl[Pass option to the linker]:option' \
+    '-optdep[Pass option to the dependency generator]:option' \
+    '-fext-core' \
+    '-dcore-lint' \
+    '-ddump-absC' \
+    '-ddump-asm' \
+    '-ddump-bcos' \
+    '-ddump-cpranal' \
+    '-ddump-cse' \
+    '-ddump-deriv' \
+    '-ddump-ds' \
+    '-ddump-flatC' \
+    '-ddump-foreign' \
+    '-ddump=inlinings' \
+    '-ddump-occur-anal' \
+    '-ddump-parsed' \
+    '-ddump-realC' \
+    '-ddump-rn' \
+    '-ddump-rules' \
+    '-ddump-sat' \
+    '-ddump-simpl' \
+    '-ddump-simpl-iterations' \
+    '-ddump-spec' \
+    '-ddump-stg' \
+    '-ddump-stranal' \
+    '-ddump-tc' \
+    '-ddump-types' \
+    '-ddump-usagesp' \
+    '-ddump-worker-wrapper' \
+    '-ddump-rn-trace' \
+    '-ddump-rn-stats' \
+    '-ddump-stix' \
+    '-ddump-simpl-stats' \
+    '-dppr-debug[Turn on debug printing (more verbose)]' \
+    '-dppr-noprags' \
+    '-dppr-user-length' \
+    '-dsource-stats' \
+    '-dstg-lints' \
+    '-dstg-stats' \
+    '-dusagesp-lint' \
+    '-dverbose-core2core' \
+    '-dverbose-stg2stg' \
+    '-unreg' \
+    '-femit-extern-decls' \
+    '-fglobalise-toplev-names' \
+    '-fno-hi-version-check' \
+    '-dno-black-holing' \
+    '-fno-method-sharing' \
+    '-fno-prune-decls' \
+    '-fhistory-size' \
+    '-funregisterised' \
+    '-fno-asm-mangling' \
+    "$osargs[@]" \
+    "$machargs[@]" \
+    ':input file:_files -g "*.(hs|lhs)(-.)"' \
+    && ret=0
+
+return ret

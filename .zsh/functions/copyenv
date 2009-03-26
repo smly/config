@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+function copyenv() {
+    local target=$1
+
+    if [[ ! -z $target ]]; then
+        cd $HOME && \
+        tar cvf - .zshrc \
+                   .zsh/* \
+                   .zsh/functions 2> /dev/null | \
+        ssh $target "tar xvf - 2> /dev/null" && \
+        cd $OLDPWD && echo done
+    fi
+}

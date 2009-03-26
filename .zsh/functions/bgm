@@ -1,0 +1,4 @@
+function bgm() {
+    local bgmfile=$1
+    while (true); do mplayer $1 -novideo 1>& /dev/null; sleep 3; done
+}
