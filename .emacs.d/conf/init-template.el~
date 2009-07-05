@@ -1,6 +1,0 @@
-(require 'autoinsert)
-(setq auto-insert-directory "~/.emacs.d/template/")
-(setq auto-insert-aliset
-      (nconc '( ("\\.tex$" . "template.tex")
-                ("\\.tex$" . "template.tex")
-                ) auto-insert-alist))
