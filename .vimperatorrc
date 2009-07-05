@@ -1,0 +1,37 @@
+"2.0 (created: 2009/03/28 23:48:07)
+
+set runtimepath=/home/smly/.vimperator
+set showtabline=0
+set! ui.key.generalAccessKey=0
+
+set wildoptions=auto
+set complete=Slb
+set mainecoon=am
+set showstatuslinks=1
+set focuscontent
+set verbose=9
+
+source! ~/.vimperatorrc.local
+
+" caret size
+set! ui.caretWidth = 10
+" vim: set ft=vimperator:
+" caret
+
+" maine_coon
+set mainecoon=ac
+
+" char_hints_mod2.js
+let g:hints io="IO"
+"let g:hintchars="HJKLASDFGYUIOPQWERTNMZXCVB"
+let g:hintchars="HKLASFGYUIPQWERTNMZXCVB"
+
+" colorscheme
+" ======================================================================
+colorscheme BrewBlue
+style -name tab-style-fix chrome://* <<EOM
+.tab-text-shadow,
+.tabs-newtab-button {
+  display: none !important;
+}
+EOM
