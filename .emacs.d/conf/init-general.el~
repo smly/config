@@ -35,6 +35,25 @@
 (require 'flymake)
 (require 'smart-compile)
 
+; InteractivelyDoThings
+; ref. http://www.emacswiki.org/emacs/InteractivelyDoThings
+;; C-d to enter dired.
+;; C-l to run ido-reread-directory to refresh the current work directory.
+;; C-f to return to normal find-file
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+(add-hook 'ido-setup-hook
+          (lambda ()
+            (define-key ido-completion-map [tab] 'ido-complete)))
+
+; using ido programmatically
+(defun my-icompleting-read(prompt choices)
+  (let ((ido-make-buffer-list-hook
+         (lambda ()
+           (setq ido-temp-list choices))))
+    (ido-read-buffer prompt)))
+
 ; ack
 (custom-set-variables '(grep-program "ack -H -a --nogroup"))
 

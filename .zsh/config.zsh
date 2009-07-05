@@ -27,16 +27,19 @@ export HOME=/home/$USER
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 PATH=$PATH:$HOME/.cabal/bin   # cabal bin
-#PATH=$PATH:$JAVA_HOME/bin    # java
+PATH=$PATH:$JAVA_HOME/bin    # java
 PATH=$PATH:$HOME/.zsh/utils   # zsh scripts
 PATH=$PATH:$HOME/bin          # user
+PATH=/usr/local/teTeX/bin:$PATH
 export PATH
 
 #export HADOOP=$HOME/intern/hatenaintern2/smly/hadoop-0.18.0
 #export TEXINPUTS=$HOME/.tex.d/
-
-export MANPATH=$MANPATH:$HOME/man
+export CLASSPATH=$CLASSPATH:/home/smly/gitws/naist-exercises/dicision_tree/weka-3-6-1/weka.jar
+export MANPATH=$MANPATH:$HOME/man:/usr/local/texlive/2008/texmf/doc/man
 export EDITOR=emacs
+
+export DISPLAY=:0.0
 
 ### locale
 export LANGUAGE="ja"
@@ -48,13 +51,31 @@ export LANG="ja"
 #########################
 ######################### EXTRA
 
+## replace-string
+autoload -U replace-string
+zle -N replace-string
+bindkey "^Xr" replace-string
+
 ### tetris
 autoload -U tetris
 zle -N tetris
 
+### zftp
+autoload -U zfinit t
+zfinit
+
 ### zed
 autoload zed # save: ^x ^w, cancel: ^c
 setopt noflowcontrol # ignore flow control such as -- ^s ^q
+
+### predict-on
+autoload -U predict-on
+zle -N predict-on
+zle -N predict-off
+bindkey '^xp' predict-on
+bindkey '^x^p' predict-off
+#zstyle ':predict' toggle true
+zstyle ':predict' verbose true
 
 #########################
 ######################### HISTORY SETTINGS
@@ -82,6 +103,8 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+
+bindkey "^w" vi-backward-kill-word
 
 #########################
 ######################### OPTIONS

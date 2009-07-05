@@ -3,7 +3,7 @@
 ; avoid libedit problem
 (load "~/.emacs.d/elisp/haskell-mode-2.4/haskell-site-file")
 
-;(setq haskell-program-name "~/.cabal/bin/ghci-haskeline")
+(setq haskell-program-name "~/.cabal/bin/ghci-haskeline")
 
 (nconc auto-mode-alist
        '(("\\.[hg]s$"  . haskell-mode)

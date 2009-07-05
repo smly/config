@@ -1,8 +1,8 @@
 # load scripts
 . ~/.zsh/prompt.zsh
+. ~/.zsh/zleiab.zsh # abbreviations
 . ~/.zsh/config.zsh
 . ~/.zsh/screen.zsh
-. ~/.zsh/zleiab.zsh # abbreviations
 . ~/.zsh/aliases.zsh
 . ~/.zsh/aliassufix.zsh
 . ~/.zsh/globalaliases.zsh
@@ -10,13 +10,11 @@
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
-
 # dircolors
-# eval `dircolors ~/.dircolors -b`
+eval `dircolors ~/.dircolors -b`
 
-#if [ $SHLVL = 1 ] || ! [ $TERM = "screen" ]; then
-#  screen -R
-#fi
-if ! [ $TERM = "screen" ] && ! [ $TERM = "linux" ]; then
+echo $STY
+
+if [ "$STY" = "" ]; then
     screen -R
 fi

@@ -48,3 +48,12 @@
        (recenter 0))
      (defadvice sdic-backward-item (after sdic-backward-item-always-top activate)
        (recenter 0))))
+
+; 検索結果表示バッファで引いた単語をハイライト表示する
+(defadvice sdic-search-eiwa-dictionary (after highlight-phrase (arg))
+    (highlight-phrase arg "hi-yellow"))
+(defadvice sdic-search-waei-dictionary (after highlight-phrase (arg))
+    (highlight-phrase arg "hi-yellow"))
+
+(ad-activate 'sdic-search-eiwa-dictionary)
+(ad-activate 'sdic-search-waei-dictionary)
