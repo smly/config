@@ -87,7 +87,11 @@ _prompt_compute_vars
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
 
 # RED PROMPT
-PROMPT='%{$fg[red]%}${WINDOW:+"$WINDOW"}'
+if [[ $HOST = "sage" ]]; then
+  PROMPT='%{$fg[red]%}${WINDOW:+"$WINDOW"}'
+else
+  PROMPT='%{$fg[red]%}${HOST}${WINDOW:+"$WINDOW"}'
+fi
 #PROMPT=$PROMPT'%{$fg[green]%}${USER}'
 PROMPT=$PROMPT'%{$fg[red]%}$'
 PROMPT=$PROMPT'%{$reset_color%} '

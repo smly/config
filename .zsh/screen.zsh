@@ -1,7 +1,7 @@
 #########################
 ######################### SCREEN SETTINGS
 
-if [ "$TERM" = "screen" ]; then
+if [ -n $STY ]; then
     function chpwd () {
 #      _reg_pwd_screennum
         _prompt_compute_vars
