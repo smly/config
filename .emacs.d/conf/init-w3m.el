@@ -1,5 +1,6 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-w3m")
 ; default
 (setq browse-url-browser-function 'w3m-browse-url)
 

@@ -20,34 +20,38 @@
            (setq ido-temp-list choices))))
     (ido-read-buffer prompt)))
 
+(global-set-key [?\C-;] 'ido-switch-buffer)
+
 ; iswitchb-mode
-(iswitchb-mode t)
+;; (iswitchb-mode t)
 
-(add-hook 'iswitchb-define-mode-map-hook
-          'iswitchb-my-keys)
+;; (add-hook 'iswitchb-define-mode-map-hook
+;;           'iswitchb-my-keys)
 
-(defun iswitchb-my-keys ()
-  "Add my keybindings for iswitchb."
-  (define-key iswitchb-mode-map [right] 'iswitchb-next-match)
-  (define-key iswitchb-mode-map [left] 'iswitchb-prev-match)
-  (define-key iswitchb-mode-map "\C-f" 'iswitchb-next-match)
-  (define-key iswitchb-mode-map " " 'iswitchb-next-match)
-  (define-key iswitchb-mode-map "\C-b" 'iswitchb-prev-match)
-  )
+;; (defun iswitchb-my-keys ()
+;;   "Add my keybindings for iswitchb."
+;;   (define-key iswitchb-mode-map [right] 'iswitchb-next-match)
+;;   (define-key iswitchb-mode-map [left] 'iswitchb-prev-match)
+;;   (define-key iswitchb-mode-map "\C-f" 'iswitchb-next-match)
+;;   (define-key iswitchb-mode-map " " 'iswitchb-next-match)
+;;   (define-key iswitchb-mode-map "\C-b" 'iswitchb-prev-match)
+;;   )
 
-(defadvice iswitchb-exhibit
-  (after
-   iswitchb-exhibit-with-display-buffer
-   activate)
-  (when (and
-         (eq iswitchb-method iswitchb-default-method)
-         iswitchb-matches)
-    (select-window
-     (get-buffer-window (cadr (buffer-list))))
-    (let ((iswitchb-method 'samewindow))
-      (iswitchb-visit-buffer
-       (get-buffer (car iswitchb-matches))))
-    (select-window (minibuffer-window))))
+;; (defadvice iswitchb-exhibit
+;;   (after
+;;    iswitchb-exhibit-with-display-buffer
+;;    activate)
+;;   (when (and
+;;          (eq iswitchb-method iswitchb-default-method)
+;;          iswitchb-matches)
+;;     (select-window
+;;      (get-buffer-window (cadr (buffer-list))))
+;;     (let ((iswitchb-method 'samewindow))
+;;       (iswitchb-visit-buffer
+;;        (get-buffer (car iswitchb-matches))))
+;;     (select-window (minibuffer-window))))
+
+; (global-set-key [?\C-;] 'iswitchb-buffer)
 
 ; anything
 (require 'anything-config)
@@ -62,7 +66,6 @@
             anything-c-source-locate))
 
 (global-set-key "\C-xb" 'anything)
-(global-set-key [?\C-;] 'iswitchb-buffer)
 (anything-iswitchb-setup)
 
 (define-key anything-map "\C-p" 'anything-previous-line)

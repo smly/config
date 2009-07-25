@@ -23,3 +23,6 @@
 (set-face-foreground 'mode-line-inactive "Firebrick")
 (set-face-background 'mode-line-inactive "black")
 (set-face-foreground 'minibuffer-prompt "Red")
+
+(custom-set-faces
+ '(linum ((t (:foreground "RosyBrown" :background "gray10")))))

@@ -1,7 +1,7 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;; ref: http://d.hatena.ne.jp/khiker/20070518/emacs_sdic
-(add-to-load-path "/usr/local/share/emacs/site-lisp/")
+(add-to-load-path "/usr/local/share/emacs/site-lisp")
 
 (autoload 'sdic-describe-word "sdic" "search word" t nil)
 (global-set-key "\C-ce" 'sdic-describe-word)
@@ -13,7 +13,7 @@
 (eval-after-load "sdic"
   '(progn
      ;; saryのコマンドをセットする
-     (setq sdicf-array-command "/usr/local/bin/sary")
+     (setq sdicf-array-command "/usr/bin/sary")
      ;; sdicファイルのある位置を設定し、arrayコマンドを使用するよう設定(現在のところ英和のみ)
      (setq sdic-eiwa-dictionary-list
            '((sdicf-client "/usr/local/share/dict/eijirou.sdic"
