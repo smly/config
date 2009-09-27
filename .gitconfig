@@ -1,0 +1,8 @@
+[user]
+	name = smly
+	email = eowner@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto

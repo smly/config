@@ -1,0 +1,19 @@
+Config { font = "-mplus-gothic-medium-r-normal-*-10-*-*-*-*-*-jisx0208.1990-*"
+       , bgColor = "black"
+       , fgColor = "darkgrey"
+       , position = Bottom
+       , lowerOnStart = True
+       , commands = [ Run StdinReader
+                    , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                    , Run CpuFreq ["-t","Freq: <cpu0>,<cpu1>GHz","-L","0","-H","1","-l","lightblue","-n","white","-h","red"] 50
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Battery ["-t","Bat:<left>"] 60
+                    , Run Swap [] 10
+                    , Run Com "uname" ["-s","-r"] "" 36000
+    		    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% %cpu% %cpufreq% | %battery% | %memory% * %swap% | %eth0% }{ <fc=#4e6eee>%date%</fc> | %uname% "
+       }
