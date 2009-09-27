@@ -26,12 +26,16 @@ export PAGER
 export HOME=/home/$USER
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-PATH=$PATH:$HOME/.cabal/bin   # cabal bin
-PATH=$PATH:$JAVA_HOME/bin    # java
-PATH=$PATH:$HOME/.zsh/utils   # zsh scripts
-PATH=$PATH:$HOME/bin          # user
-PATH=/usr/local/teTeX/bin:$PATH
 export PATH
+PATH=$PATH:$HOME/.cabal/bin          # haskell-cabal
+#PATH=$PATH:$HOME/.gem/ruby/1.8/bin   # ruby-gems
+PATH=$PATH:$HOME/.gem/ruby/1.9.1/bin
+PATH=$PATH:/usr/bin/perlbin/vendor   # perl
+PATH=$PATH:$JAVA_HOME/bin            # java
+PATH=$PATH:$HOME/.zsh/utils          # zsh scripts
+PATH=$PATH:$HOME/bin                 # user bin
+PATH=$PATH:/usr/local/texlive/p2008/bin/i686-pc-linux-gnu  # texlive
+#PATH=/usr/local/teTeX/bin:$PATH
 
 #export HADOOP=$HOME/intern/hatenaintern2/smly/hadoop-0.18.0
 #export TEXINPUTS=$HOME/.tex.d/
