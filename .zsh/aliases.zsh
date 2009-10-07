@@ -10,6 +10,11 @@ alias .......='cd ../../../../../.. && ls'
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias d='dirs -v'
 
+# short git
+alias gT="git status"
+alias gU="git add -u"
+alias gD="git diff HEAD"
+
 # short
 alias du="du -h"
 alias df="df -h"

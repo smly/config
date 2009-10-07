@@ -8,6 +8,7 @@ abbreviations=(
     "lg"     "| grep"
     "tx"     "tar zxvf"
     "tc"     "tar zcvf"
+    "gc"     "git commit -m"
 )
 
 magic-abbrev-expand() {
