@@ -9,6 +9,9 @@ import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.ResizableTile (ResizableTall(..))
 import XMonad.Layout.Magnifier (magnifiercz)
 import XMonad.Layout.MagicFocus
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Dishes
+import XMonad.Layout.DragPane
 import Data.Ratio
 import System.IO
 
@@ -19,6 +22,7 @@ myManageHook = composeAll
     ]
 
 main = do
+    spawn "xlock -mode demon" -- lock desktop first!
     xmproc <- spawnPipe "/usr/bin/xmobar /home/smly/.xmobarrc"
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> myManageHook
@@ -43,10 +47,16 @@ main = do
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xlock -mode demon")
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
         , ((0, xK_Print), spawn "scrot")
+        , ((mod4Mask .|. shiftMask, xK_b), sendMessage ToggleStruts)
         ]
 
 standardLayouts = defaultTall   |||
-                  Mirror tiled  |||
+--                  Mirror tiled  |||
+                  Grid |||
+                  Dishes 2 (1/7) |||
+                  dragPane Horizontal 0.1 0.5 |||
+                  dragPane Vertical 0.1 0.5 |||
+                  ThreeCol 1 (3/100) (1/2) |||
                   Full
                 where
                   tiled       = Tall nmaster delta ratio
