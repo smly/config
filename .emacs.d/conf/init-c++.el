@@ -1,12 +1,12 @@
 ;; C++ style
-(add-hook 'c++-mode-hook
-          '(lambda()
-             (c-set-style "stroustrup")
-             (setq indent-tabs-mode nil)     ; インデントは空白文字で行う（TABコードを空白に変換）
-             (c-set-offset 'innamespace 0)   ; namespace {}の中はインデントしない
-             (c-set-offset 'arglist-close 0) ; 引数指定の閉じ括弧はインデントしない
-             (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない
-             ))
+;; (add-hook 'c++-mode-hook
+;;           '(lambda()
+;;              (c-set-style "stroustrup")
+;;              (setq indent-tabs-mode nil)     ; インデントは空白文字で行う（TABコードを空白に変換）
+;;              (c-set-offset 'innamespace 0)   ; namespace {}の中はインデントしない
+;;              (c-set-offset 'arglist-close 0) ; 引数指定の閉じ括弧はインデントしない
+;;              (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない
+;;              ))
 
 ; flymake
 (defun flymake-cc-init ()
@@ -22,3 +22,8 @@
 (add-hook 'c++-mode-hook
   '(lambda ()
       (flymake-mode t)))
+
+;; google-c-style
+(require 'google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
