@@ -1,6 +1,7 @@
 # load scripts
 . ~/.zsh/prompt.zsh
-. ~/.zsh/zleiab.zsh # abbreviations
+. ~/.zsh/abbreviations.zsh
+. ~/.zsh/hash.zsh
 . ~/.zsh/config.zsh
 . ~/.zsh/screen.zsh
 . ~/.zsh/aliases.zsh
@@ -11,10 +12,25 @@
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
 # dircolors
-eval `dircolors ~/.dircolors -b`
+#eval `dircolors ~/.dircolors -b`
 
-echo $STY
+# $TERM
+# urxvt: rxvt-256color
+# screen: xterm-256color
 
-if [ "$STY" = "" ]; then
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+  startx
+  logout
+fi
+
+if [[ $(tty) = /dev/tty1 ]]; then
+  startx
+  logout
+fi
+
+if [[ $(tty) != /dev/tty1 ]]; then
+  echo $STY
+  if [ "$STY" = "" ]; then
     screen -R
+  fi
 fi

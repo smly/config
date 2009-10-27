@@ -9,6 +9,7 @@ abbreviations=(
     "tx"     "tar zxvf"
     "tc"     "tar zcvf"
     "gc"     "git commit -m"
+    "gl"     "git ls-tree --name-only -r HEAD"
 )
 
 magic-abbrev-expand() {
