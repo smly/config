@@ -51,6 +51,10 @@ function _git_compute_vars() {
 function _prompt_compute_vars() {
     _git_compute_vars
 
+    local pdate
+    pdate=$(date +"%m/%_d %H:%M")
+    export __ZSH_RPROMPT_DATE="$pdate"
+
     local git_dir
     git_dir=${${__ZSH_GIT_DIR}%% }
 
@@ -101,4 +105,5 @@ RPROMPT=$RPROMPT'%{$fg[yellow]%}['       # [
 RPROMPT=$RPROMPT'${__ZSH_RPROMPT_DIR}'   # rprompt_dir (git dir)
 RPROMPT=$RPROMPT'%{$fg[red]%}:%!'        # # of history
 RPROMPT=$RPROMPT'%{$fg[yellow]%}]'       # ]
+RPROMPT=$RPROMPT'%{$fg[white]%}(${__ZSH_RPROMPT_DATE})'  # date
 RPROMPT=$RPROMPT'%{$reset_color%}'       # reset
