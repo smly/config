@@ -1,137 +1,113 @@
+{-# OPTIONS_GHC -Wall -fno-warn-missing-signatures #-}
+{-# LANGUAGE NoMonomorphismRestriction #-}
+{-# LANGUAGE PatternGuards #-}
+
 import XMonad
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.EwmhDesktops
-
-import qualified XMonad.StackSet as W
-import Data.Bits ((.|.))
-import System.Exit
-import System.IO
 import qualified Data.Map as M
-
-import XMonad.Layout.TwoPane
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.Tabbed
-import XMonad.Layout.Combo
-import XMonad.Layout.WindowNavigation
-import XMonad.Layout.Circle
-
-import XMonad.Actions.CycleWS
-import XMonad.Actions.SwapWorkspaces
-import XMonad.Actions.Submap
-import XMonad.Actions.DwmPromote
-
-import XMonad.Util.EZConfig
-import XMonad.Util.Run (spawnPipe)
-
-main = do
-  xmobar <- spawnPipe "xmobar"
-  xmonad $ defaultConfig
-       { borderWidth        = 3
-       , focusedBorderColor = "#C11B17"
-       , normalBorderColor  = "#2e3436"
-       , manageHook         = myManageHook <+> manageDocks
-       , workspaces         = map show [1 .. 9 :: Int]
-       , terminal           = "urxvt"
-       , modMask            = mod4Mask
-       , logHook            = myLogHook
-       , layoutHook         = windowNavigation $ (avoidStruts (myTab ||| tall ||| Mirror tall ||| Circle))
-       , keys               = myKeys
-       }
-    where
-      tall = ResizableTall 1 (3/100) (1/2) []
-
-myTab = tabbed shrinkText myTabConfig
-
-myTabConfig = defaultTheme
-    { activeColor         = "#C11B17"
-    , inactiveColor       = "#7E2217"
-    , urgentColor         = "#C500C5"
-    , activeBorderColor   = "white"
-    , inactiveBorderColor = "grey"
-    , activeTextColor     = "white"
-    , inactiveTextColor   = "grey"
-    , decoHeight          = 12
-    , fontName            = "-mplus-gothic-medium-r-normal-r-12-*-*-*-*-*-*-*"
-    }
-
-myLogHook :: X ()
-myLogHook = do ewmhDesktopsLogHook
-               return ()
+import qualified XMonad.StackSet as W
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.Grid (Grid(..))
+import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.ResizableTile (ResizableTall(..))
+import XMonad.Layout.Magnifier (magnifiercz)
+import XMonad.Layout.MagicFocus
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Dishes
+import XMonad.Layout.DragPane
+import XMonad.Layout.ComboP -- 
+import XMonad.Actions.GridSelect
+import XMonad.Actions.WindowBringer (bringWindow)
+import Data.Ratio
+import System.IO
 
 myManageHook = composeAll
-               [ className =? "MPlayer"          --> doFloat
-               , className =? "Gimp"            --> doFloat
-               , className =? "Thunar"           --> doFloat
-               , className =? "VLC media player" --> doFloat
-               , className =? "Thunderbird-bin"  --> doF(W.shift "3")
-               , className =? "Pidgin"           --> doF(W.shift "1")
-               , className =? "Minefield"        --> doF(W.shift "2")
-               , resource  =? "amarokapp"        --> doF(W.shift "5")
-               , className =? "Gimmix"           --> doF(W.shift "5")
-               , resource  =? "desktop_window"   --> doIgnore
-               , className =? "Xfce4-panel"      --> doFloat
-               , className =? "Xfce-mcs-manager" --> doFloat
-               , className =? "Xfce-mixer"       --> doFloat
-               , className =? "Gui.py"           --> doFloat
-               , manageDocks]
+    [ className =? "Gimp"      --> doFloat
+    , className =? "Vncviewer" --> doFloat
+    , className =? "MPlayer"   --> doFloat
+    ]
 
-myKeys = \conf -> mkKeymap conf $
-         -- lunching and killing programs
-         [ ("M-S-<Return>", spawn $ XMonad.terminal conf)
-         , ("M-p", spawn  "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
-         , ("M-S-c", kill)
-         -- Lunch gmrun
-         , ("M-<Space>", sendMessage NextLayout)
-         , ("M-S-<Space>", setLayout $ XMonad.layoutHook conf) -- Reset the layouts on the current workspace to default
-         , ("M-n", refresh) -- resize viewed windows to the correct size
-         -- move focus up or down the window stack
-         , ("M-j", windows W.focusDown)
-         , ("M-k", windows W.focusUp)
-         , ("M-m", windows W.focusMaster)
-         -- modifying the window order
-         , ("M-<Return>", windows W.swapMaster)
-         , ("M-S-j", windows W.swapDown)
-         , ("M-S-k", windows W.swapUp)
-         -- resizing the window order
-         , ("M-h", sendMessage Shrink)
-         , ("M-l", sendMessage Expand)
-         -- floating layout support
-         , ("M-t", withFocused $ windows . W.sink)
---         , ("M-d", withFocused $ windows . W.sink)
-         -- increase or decrease number of window in the master area
-         , ("M-,", sendMessage (IncMasterN 1))
-         , ("M-.", sendMessage (IncMasterN (-1)))
-         -- quit, or restart
-         , ("M-S-q", io (exitWith ExitSuccess))
-         , ("M-x q", restart "xmonad" True)
+main = do
+    spawn "xlock -mode demon" -- lock desktop first!
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/smly/.xmobarrc"
+    xmonad $ defaultConfig
+        { manageHook = manageDocks <+> myManageHook
+                        <+> manageHook defaultConfig
+--        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+        , layoutHook = avoidStruts $
+                       smartBorders (
+--                                     onWorkspace "dev1" grids $
+                                     onWorkspace "web4" mostlyTall standardLayouts)
+        , logHook = dynamicLogWithPP $ xmobarPP
+                        { ppOutput = hPutStrLn xmproc
+                        , ppTitle = xmobarColor "#f07777" "" . shorten 50
+                        }
+        , modMask = mod4Mask     -- Rebind Mod to the Windows key
+        , terminal = "urxvt"
+        , focusFollowsMouse = False
+        , borderWidth = 1
+        , workspaces = ["dev1","dev2","dev3","web4"] ++ map show [5..9]
+        , normalBorderColor  = "#222222"
+        , focusedBorderColor = "#c00000"
+        } `additionalKeys`
+        [ ((mod4Mask .|. shiftMask, xK_z), spawn "xlock -mode demon")
+        , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
+        , ((0, xK_Print), spawn "scrot")
+        , ((mod4Mask .|. shiftMask, xK_b), sendMessage ToggleStruts)
+--        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 greenColorizer)
+        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 defaultColorizer)
+        , ((mod4Mask, xK_f), bringSelected $ gsconfig3 defaultColorizer)
+        , ((mod4Mask, xK_s), spawnSelected defaultGSConfig commands)
+        ]
+            where
+              commands = ["urxvt", "wicd-client -n", "firefox", "mute", "unmute80"]
 
-         -- , ("M-x p", dwmpromote) --might change this to M-<Return>
-         -- , ("M-S-s", sendMessage MirrorShrink)
-         -- , ("M-S-e", sendMessage MirrorExpand)
+standardLayouts = defaultTall   |||
+--                  Mirror tiled  |||
+                  Grid |||
+                  Dishes 2 (1/7) |||
+                  dragPane Horizontal 0.1 0.5 |||
+                  dragPane Vertical 0.1 0.5 |||
+                  ThreeCol 1 (3/100) (1/2) |||
+                  Full
+                where
+                  tiled       = Tall nmaster delta ratio
+                  defaultTall = ResizableTall 1 (3/100) (1/2) []
+                  nmaster     = 1
+                  ratio       = toRational (2/(1 + sqrt 5 :: Double)) -- golden, thx Octoploid
+                  delta       = 0.03
 
-         -- increase/decrease transparency
-         -- , ("M-t", spawn "transset-df -a --dec .1")
-         -- , ("M-S-t", spawn "transset-df -a --inc .1")
-         ]
-         ++
-         -- M-[1..9] %! switch to workspace N
-         -- M-S-[1..9] %! move client to workspace N
-         [ (m ++ i, windows $ f j)
-           | (i, j) <- zip (map show [1..9]) (XMonad.workspaces conf)
-         , (m, f) <- [("M-", W.greedyView), ("M-S-", W.shift)]
-         ]
-         ++
-         -- switch to physical/Xinerama screens
-         [ (m ++ key, screenWorkspace sc >>= flip whenJust (windows . f))
-           | (key, sc) <- zip ["w", "e", "q"] [0..]
-         , (m, f) <- [("M-", W.view), ("M-S-", W.shift)]
-         ]
-         -- ++
-         --Multimedia keys
-         -- [
-         -- ("M-v", spawn "aumix -v -3")
-         -- , ("M-S-v", spawn "aumix -v +5")
-         -- , ("M-a p", spawn "mpc toggle") --meta-Audio <previous>
-         -- , ("M-a ,", spawn "mpc prev")
-         -- , ("M-a .", spawn "mpc next")
-         -- ]
+mostlyTall = ResizableTall 1 (3/100) (1/2) [] ||| Full
+
+gsconfig3 colorizer = (buildDefaultGSConfig colorizer)
+    { gs_cellheight = 30
+    , gs_cellwidth = 100
+    , gs_navigate = M.unions
+            [reset
+            ,nethackKeys
+            ,gs_navigate                               -- get the default navigation bindings
+                $ defaultGSConfig `asTypeOf` (gsconfig3 colorizer)
+            -- needed to fix an ambiguous type variable
+            ]
+    }
+   where addPair (a,b) (x,y) = (a+x,b+y)
+         nethackKeys = M.map addPair $ M.fromList
+                               [((0,xK_y),(-1,-1))
+                               ,((0,xK_i),(1,-1))
+                               ,((0,xK_n),(-1,1))
+                               ,((0,xK_m),(1,1))
+                               ]
+         -- jump back to the center with the spacebar, regardless of the current position.
+         reset = M.singleton (0,xK_space) (const (0,0))
+
+greenColorizer = colorRangeFromClassName
+                 black            -- lowest inactive bg
+                 (0x70,0xFF,0x70) -- highest inactive bg
+                 black            -- active bg
+                 white            -- inactive fg
+                 white            -- active fg
+    where black = minBound
+          white = maxBound
