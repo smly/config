@@ -34,7 +34,7 @@ else
     screen -c $SCREENRC -R
   else
     # keychain
-      keychain id_rsa
+      keychain --nogui id_rsa
       [ -f $HOME/.keychain/$HOSTNAME-sh ] && \
           . $HOME/.keychain/$HOSTNAME-sh
       [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
