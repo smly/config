@@ -1,6 +1,15 @@
 #########################
 #########################
 
+# host
+local clserv clserv2 clserv3 clserv4
+clserv=(bean parsely papaya cacao carrot tomato pepper radish)
+clserv2=(pine2 pine3 pine4 pine5 pine6 apple)
+clserv3=(stmap minna)
+clserv4=(pine0 pine1 cactus) # service
+myserv=(hofmann sage)
+_cache_hosts=($clserv $clserv2 $clserv4 $myserv)
+
 # load zsh modules
 autoload -U compinit
 compinit -u

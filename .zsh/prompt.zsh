@@ -90,14 +90,15 @@ _prompt_compute_vars
 # Background color codes:
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
 
-# RED PROMPT
-if [[ $HOST = "sage" ]]; then
-  PROMPT='%{$fg[red]%}${WINDOW:+"$WINDOW"}'
+if [[ $HOSTNAME = "sage" ]]; then
+  PROMPT='%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
+elif [[ $HOSTNAME = "hofmann" ]]; then
+  PROMPT='%{$fg[red]%}${HOST}${WINDOW:+"$WINDOW"}$'
 else
-  PROMPT='%{$fg[red]%}${HOST}${WINDOW:+"$WINDOW"}'
+  PROMPT='%{$fg[green]%}${HOST}${WINDOW:+"$WINDOW"}$'
 fi
+
 #PROMPT=$PROMPT'%{$fg[green]%}${USER}'
-PROMPT=$PROMPT'%{$fg[red]%}$'
 PROMPT=$PROMPT'%{$reset_color%} '
 
 RPROMPT='${__ZSH_GIT_STATE}'

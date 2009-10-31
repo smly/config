@@ -1,3 +1,15 @@
+
+# set HOSTNAME
+[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
+if [[ "$HOSTNAME" = "sage" ]]; then
+    SCREENRC="$HOME/.screenrc.sage" # green, ^]^]
+    [[ -f ~/.localrc ]] && . ~/.localrc
+elif [[ "$HOSTNAME" = "hofmann" ]]; then
+    SCREENRC="$HOME/.screenrc.hofmann" # red, ^t^t
+else
+    SCREENRC="$HOME/.screenrc.clserv" # blue, ^v^v
+fi
+
 # load scripts
 . ~/.zsh/prompt.zsh
 . ~/.zsh/abbreviations.zsh
@@ -9,28 +21,30 @@
 . ~/.zsh/globalaliases.zsh
 . ~/.zsh/completion.zsh
 
-# use .localrc for settings specific to one system
-[[ -f ~/.localrc ]] && . ~/.localrc
+if [[ $(tty) = /dev/tty1 ]]; then
+  # start X
+  if [[ -z "$DISPLAY" ]]; then
+    startx
+    logout
+  fi
+else
+  echo $STY
+  # lunch screen
+  if [ "$STY" = "" ]; then
+    screen -c $SCREENRC -R
+  else
+    # keychain
+      keychain id_rsa
+      [ -f $HOME/.keychain/$HOSTNAME-sh ] && \
+          . $HOME/.keychain/$HOSTNAME-sh
+      [ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
+          . $HOME/.keychain/$HOSTNAME-sh-gpg
+  fi
+fi
+
 # dircolors
 #eval `dircolors ~/.dircolors -b`
 
 # $TERM
 # urxvt: rxvt-256color
 # screen: xterm-256color
-
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-  startx
-  logout
-fi
-
-if [[ $(tty) = /dev/tty1 ]]; then
-  startx
-  logout
-fi
-
-if [[ $(tty) != /dev/tty1 ]]; then
-  echo $STY
-  if [ "$STY" = "" ]; then
-    screen -R
-  fi
-fi
