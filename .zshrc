@@ -1,11 +1,16 @@
+# twitter.com/smly
+
+# common settings
+. ~/.zsh/config.zsh
 
 # set HOSTNAME
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 if [[ "$HOSTNAME" = "sage" ]]; then
     SCREENRC="$HOME/.screenrc.sage" # green, ^]^]
-    [[ -f ~/.localrc ]] && . ~/.localrc
+    [[ -f ~/.zsh/local/sage.zsh ]] && . ~/.zsh/local/sage.zsh
 elif [[ "$HOSTNAME" = "hofmann" ]]; then
     SCREENRC="$HOME/.screenrc.hofmann" # red, ^t^t
+    [[ -f ~/.zsh/local/hofmann.zsh ]] && . ~/.zsh/local/hofmann.zsh
 else
     SCREENRC="$HOME/.screenrc.clserv" # blue, ^v^v
 fi
@@ -14,7 +19,6 @@ fi
 . ~/.zsh/prompt.zsh
 . ~/.zsh/abbreviations.zsh
 . ~/.zsh/hash.zsh
-. ~/.zsh/config.zsh
 . ~/.zsh/screen.zsh
 . ~/.zsh/aliases.zsh
 . ~/.zsh/aliassufix.zsh
@@ -44,7 +48,3 @@ fi
 
 # dircolors
 #eval `dircolors ~/.dircolors -b`
-
-# $TERM
-# urxvt: rxvt-256color
-# screen: xterm-256color
