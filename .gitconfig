@@ -6,3 +6,11 @@
 	status = auto
 	branch = auto
 	interactive = auto
+[alias]
+        co = checkout
+        ci = commit -a
+        st = status
+        up = pull --rebase
+[github]
+        user = smly
+        email = eowner@gmail.com
