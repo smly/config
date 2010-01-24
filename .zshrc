@@ -8,10 +8,10 @@
 # local settings
 case $HOSTNAME in
     sage)
-        SCREENRC="$HOME/.screenrc.sage" # green, ^]^]
+        SCREENRC="$HOME/.screen/sage" # green, ^]^]
         [[ -f ~/.zsh/local/sage.zsh ]] && . ~/.zsh/local/sage.zsh ;;
     hofmann)
-        SCREENRC="$HOME/.screenrc.hofmann" # red, ^t^t
+        SCREENRC="$HOME/.scree/hofmann" # red, ^t^t
         [[ -f ~/.zsh/local/hofmann.zsh ]] && . ~/.zsh/local/hofmann.zsh ;;
     *)
         case $HOST_OS in
@@ -21,19 +21,6 @@ case $HOSTNAME in
                 ;;
         esac ;;
 esac
-
-# if [[ "$HOSTNAME" = "sage" ]]; then
-#     # sage
-#     SCREENRC="$HOME/.screenrc.sage" # green, ^]^]
-#     [[ -f ~/.zsh/local/sage.zsh ]] && . ~/.zsh/local/sage.zsh
-# elif [[ "$HOSTNAME" = "hofmann" ]]; then
-#     # hofmann
-#     SCREENRC="$HOME/.screenrc.hofmann" # red, ^t^t
-#     [[ -f ~/.zsh/local/hofmann.zsh ]] && . ~/.zsh/local/hofmann.zsh
-# else
-#     # pine and bean family
-#     SCREENRC="$HOME/.screenrc.clserv" # blue, ^v^v
-# fi
 
 # load scripts
 . ~/.zsh/prompt.zsh
