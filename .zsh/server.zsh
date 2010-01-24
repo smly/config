@@ -39,13 +39,13 @@ export HOST_OS
 local MSG=""
 case $HOST_OS in
     Arch*)
-        MSG="${COLOR_ARCH}${COLOR_BOLD}${COLOR_BLINK}$HOSTNAME ($HOST_OS)${RIGHTC}!!" ;;
+        MSG="${COLOR_ARCH}${COLOR_BOLD}$HOSTNAME ${COLOR_BLINK}($HOST_OS)${RIGHTC}!!" ;;
     Ubuntu*)
-        MSG="${COLOR_UBUN}${COLOR_BOLD}${COLOR_BLINK}$HOSTNAME ($HOST_OS)${RIGHTC}!!" ;;
+        MSG="${COLOR_UBUN}${COLOR_BOLD}$HOSTNAME ${COLOR_BLINK}($HOST_OS)${RIGHTC}!!" ;;
     Gentoo*)
-        MSG="${COLOR_GENT}${COLOR_BOLD}${COLOR_BLINK}$HOSTNAME ($HOST_OS)${RIGHTC}!!" ;;
+        MSG="${COLOR_GENT}${COLOR_BOLD}$HOSTNAME ${COLOR_BLINK}($HOST_OS)${RIGHTC}!!" ;;
     *)
-        MSG="${COLOR_BOLD}${COLOR_BLINK}$HOSTNAME ($HOST_OS)${RIGHTC}!!" ;;
+        MSG="${COLOR_BOLD}$HOSTNAME ${COLOR_BLINK}($HOST_OS)${RIGHTC}!!" ;;
 esac
 echo "／(^o^)＼ here is $MSG"
 
