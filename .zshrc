@@ -15,6 +15,9 @@ case $HOSTNAME in
         [[ -f ~/.zsh/local/hofmann.zsh ]] && . ~/.zsh/local/hofmann.zsh ;;
     *)
         case $HOST_OS in
+            "Ubuntu*")
+                SCREENRC="$HOME/.scree/default" # red, ^t^t
+                [[ -f ~/.zsh/local/clserv.zsh ]] && . ~/.zsh/local/clserv.zsh ;|
             "Ubuntu 9.04")
                 ;;
             "Ubuntu 8.04")
