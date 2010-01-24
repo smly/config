@@ -1,19 +1,39 @@
-# twitter.com/smly
-
 # common settings
 . ~/.zsh/config.zsh
+. ~/.zsh/server.zsh # detect HOST_OS
 
 # set HOSTNAME
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
-if [[ "$HOSTNAME" = "sage" ]]; then
-    SCREENRC="$HOME/.screenrc.sage" # green, ^]^]
-    [[ -f ~/.zsh/local/sage.zsh ]] && . ~/.zsh/local/sage.zsh
-elif [[ "$HOSTNAME" = "hofmann" ]]; then
-    SCREENRC="$HOME/.screenrc.hofmann" # red, ^t^t
-    [[ -f ~/.zsh/local/hofmann.zsh ]] && . ~/.zsh/local/hofmann.zsh
-else
-    SCREENRC="$HOME/.screenrc.clserv" # blue, ^v^v
-fi
+
+# local settings
+case $HOSTNAME in
+    sage)
+        SCREENRC="$HOME/.screenrc.sage" # green, ^]^]
+        [[ -f ~/.zsh/local/sage.zsh ]] && . ~/.zsh/local/sage.zsh ;;
+    hofmann)
+        SCREENRC="$HOME/.screenrc.hofmann" # red, ^t^t
+        [[ -f ~/.zsh/local/hofmann.zsh ]] && . ~/.zsh/local/hofmann.zsh ;;
+    *)
+        case $HOST_OS in
+            "Ubuntu 9.04")
+                ;;
+            "Ubuntu 8.04")
+                ;;
+        esac ;;
+esac
+
+# if [[ "$HOSTNAME" = "sage" ]]; then
+#     # sage
+#     SCREENRC="$HOME/.screenrc.sage" # green, ^]^]
+#     [[ -f ~/.zsh/local/sage.zsh ]] && . ~/.zsh/local/sage.zsh
+# elif [[ "$HOSTNAME" = "hofmann" ]]; then
+#     # hofmann
+#     SCREENRC="$HOME/.screenrc.hofmann" # red, ^t^t
+#     [[ -f ~/.zsh/local/hofmann.zsh ]] && . ~/.zsh/local/hofmann.zsh
+# else
+#     # pine and bean family
+#     SCREENRC="$HOME/.screenrc.clserv" # blue, ^v^v
+# fi
 
 # load scripts
 . ~/.zsh/prompt.zsh
