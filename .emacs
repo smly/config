@@ -19,11 +19,15 @@
 (load "init-gitit") ; (markdown, git)
 (load "init-yatex")
 (load "init-template")
+
+;; programming
 (load "init-haskell")
 (load "init-python")
 (load "init-ruby")
 (load "init-c++")
 (load "init-prolog")
+(load "init-golang")
+
 ;(load "init-w3m")
 (load "init-switch")
 ;(load "poj-mode")
