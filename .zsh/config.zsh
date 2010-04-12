@@ -20,7 +20,6 @@ export PAGER
 #########################
 
 #export JAVA_HOME=/usr/java/jdk1.6.0_11
-export HOME=/home/$USER
 #PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export PATH=$PATH:$HOME/.zsh/utils          # zsh scripts
 ### env
