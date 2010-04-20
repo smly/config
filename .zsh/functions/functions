@@ -4,20 +4,6 @@ function cd() { builtin cd $@ && ls --color }
 function pcat() { cat /proc/$1/status }
 function histall { history -E 1 }
 
-function vol() {
-    local volume=$1
-    amixer set Master $1% unmute
-}
-
-function call() {
-    local message=$1
-    curl -d "message=$message" http://im.kayac.com/api/post/smly
-}
-
-function loopn() {
-    while (true); do echo $@ ; $1 $@ -novideo 1>& /dev/null; sleep 3; done
-}
-
 # Extract archives
 function extract () {
     if [ -f $1 ] ; then
@@ -39,11 +25,3 @@ function extract () {
         echo "'$1' is not a valid file"
     fi
 }
-
-# function flv2mp3() {
-#     if [ -f $1 ] ; then
-#       ffmpeg -y -i $1 -acodec copy $2
-#     else
-#         echo "'$1' is not a valid file"
-#     fi
-# }

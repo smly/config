@@ -3,5 +3,5 @@ export GOARCH=amd64
 export GOOS=linux
 export GOBIN=$HOME/local/bin
 
-export PATH=$HOME/local/bin:/opt/bin32-jdk/bin:/usr/bin/perlbin/core:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/local/lib
+export HADOOP_HOME=$HOME/hadoop
+export PATH=$HOME/local/bin:$HADOOP_HOME/bin:/usr/local/texlive/p2009/bin/x86_64-unknown-linux-gnu:/opt/bin32-jdk/bin:/usr/bin/perlbin/core:$PATH
