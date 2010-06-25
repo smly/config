@@ -1,1 +1,2 @@
+keymap m EXTERN_LINK "echo %s | perl -npe 's/\n$//' | xclip"
 keymap C-o NEXT_PAGE
