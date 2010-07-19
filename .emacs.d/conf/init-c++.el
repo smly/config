@@ -18,12 +18,14 @@
     (list "g++" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
 
 (push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
+(push '("\\.cc$" flymake-cc-init) flymake-allowed-file-name-masks)
 
 (add-hook 'c++-mode-hook
   '(lambda ()
       (flymake-mode t)))
 
 ;; google-c-style
+; wget http://google-styleguide.googlecode.com/svn/trunk/google-c-style.el
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)

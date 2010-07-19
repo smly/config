@@ -33,22 +33,27 @@
 
 ; req
 (require 'flymake)
-(require 'smart-compile)
 
 ; ack
 (custom-set-variables '(grep-program "ack -H -a --nogroup"))
 
+; http://sourceforge.jp/projects/macwiki/svn/view/zenitani/elisp/smart-compile.el
 ; smart-compile
-(defvar smart-compile-alist '(
-  ("\\.c\\'"          . "gcc %f -lm -o %n")
-  ("\\.[Cc]+[Pp]*\\'" . "g++ %f -lm -o %n")
-  ("\\.java\\'"       . "javac %f")
-  ("\\.f90\\'"        . "f90 %f -o %n")
-  ("\\.[Ff]\\'"       . "f77 %f -o %n")
-  ("\\.tex\\'"        . (tex-file))
-  ("\\.pl\\'"         . "perl -cw %f")
-  (emacs-lisp-mode    . (emacs-lisp-byte-compile))
-) "...")
+(lazyload (smart-compile) "smart-compile+")
+(setq compilation-window-height 15)
+(global-set-key "\C-x\C-x" 'smart-compile)
+(lazyload (smart-compile) "smart-compile+"
+  (append-to-list smart-compile-alist
+  '(("\\.c\\'"          . "gcc %f -lm -o %n")
+    ("\\.cc\\'"         . "g++ %f -lm -o %n && ./%n") ;; for topcoder
+    ("\\.[Cc]+[Pp]*\\'" . "g++ %f -lm -o %n")
+    ("\\.java\\'"       . "javac %f")
+    ("\\.f90\\'"        . "f90 %f -o %n")
+    ("\\.[Ff]\\'"       . "f77 %f -o %n")
+    ("\\.tex\\'"        . (tex-file))
+    ("\\.pl\\'"         . "perl -cw %f")
+    ("\\.cs\\'"         . "mcs %f")
+    (emacs-lisp-mode    . (emacs-lisp-byte-compile)))))
 
 (global-set-key "\C-cc" 'smart-compile)
 

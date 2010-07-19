@@ -54,21 +54,23 @@
 ; (global-set-key [?\C-;] 'iswitchb-buffer)
 
 ; anything
-(require 'anything-config)
+; http://www.emacswiki.org/emacs/download/anything.el
+; http://www.emacswiki.org/emacs/download/anything-config.el
+;(require 'anything-config)
 
-(setq anything-sources
-      (list anything-c-source-buffers
-            anything-c-source-bookmarks
-            anything-c-source-file-name-history
-            anything-c-source-man-pages
-            anything-c-source-info-pages
-            anything-c-source-calculation-result
-            anything-c-source-locate))
+;; (setq anything-sources
+;;       (list anything-c-source-buffers
+;;             anything-c-source-bookmarks
+;;             anything-c-source-file-name-history
+;;             anything-c-source-man-pages
+;;             anything-c-source-info-pages
+;;             anything-c-source-calculation-result
+;;             anything-c-source-locate))
 
-(global-set-key "\C-xb" 'anything)
-(anything-iswitchb-setup)
+;; (global-set-key "\C-xb" 'anything)
+;; (anything-iswitchb-setup)
 
-(define-key anything-map "\C-p" 'anything-previous-line)
-(define-key anything-map "\C-n" 'anything-next-line)
-(define-key anything-map "\C-v" 'anything-next-page)
-(define-key anything-map "\M-v" 'anything-previous-page)
+;; (define-key anything-map "\C-p" 'anything-previous-line)
+;; (define-key anything-map "\C-n" 'anything-next-line)
+;; (define-key anything-map "\C-v" 'anything-next-page)
+;; (define-key anything-map "\M-v" 'anything-previous-page)

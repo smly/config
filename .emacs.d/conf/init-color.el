@@ -25,4 +25,6 @@
 (set-face-foreground 'minibuffer-prompt "Red")
 
 (custom-set-faces
- '(linum ((t (:foreground "RosyBrown" :background "gray10")))))
+ '(linum ((t (:foreground "salmon4" :background "gray10")))))
+; '(linum ((t (:foreground "RosyBrown" :background "gray10")))))
+

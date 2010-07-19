@@ -42,7 +42,8 @@
 (setq ess-ask-for-ess-directory nil)
 (setq ess-pre-run-hook
       '((lambda ()
-          (setq default-process-coding-system '(utf8 . utf8))
+          (setq default-process-coding-system 'utf-8-unix)
+;          (setq default-process-coding-system '(utf8 . utf8))
           )))
 
 ;; (defun ess:format-window-1 ()

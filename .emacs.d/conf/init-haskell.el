@@ -1,9 +1,8 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ; avoid libedit problem
-(load "~/.emacs.d/elisp/haskell-mode-2.4/haskell-site-file")
-
-;(setq haskell-program-name "~/.cabal/bin/ghci-haskeline")
+(load "~/.emacs.d/elisp/haskell-mode-2.7.0/haskell-site-file.el")
+;(load "~/.emacs.d/elisp/haskell-mode-2.4/haskell-site-file")
 
 (nconc auto-mode-alist
        '(("\\.[hg]s$"  . haskell-mode)
@@ -29,54 +28,52 @@
 
 (ad-activate 'haskell-indent-indentation-info)
 
-; flymake-mode for haskell
-(require 'flymake)
-(defun flymake-Haskell-init ()
-  (flymake-simple-make-init-impl
-   'flymake-create-temp-with-folder-structure nil nil
-   (file-name-nondirectory buffer-file-name)
-   'flymake-get-Haskell-cmdline))
+;; flymake-mode for haskell
+;; (defun flymake-Haskell-init ()
+;;   (flymake-simple-make-init-impl
+;;    'flymake-create-temp-with-folder-structure nil nil
+;;    (file-name-nondirectory buffer-file-name)
+;;    'flymake-get-Haskell-cmdline))
 
-(defun flymake-get-Haskell-cmdline (source base-dir)
-  (list "flycheck_haskell.pl"
-        (list source base-dir)))
+;(defun flymake-get-Haskell-cmdline (source base-dir)
+;  (list "flycheck_haskell.pl"
+;        (list source base-dir)))
 
-(push '(".+\\.hs$" flymake-Haskell-init flymake-simple-java-cleanup)
-      flymake-allowed-file-name-masks)
-(push '(".+\\.lhs$" flymake-Haskell-init flymake-simple-java-cleanup)
-      flymake-allowed-file-name-masks)
-(push
- '("^\\(\.+\.hs\\|\.lhs\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)"
-   1 2 3 4) flymake-err-line-patterns)
+;; (push '(".+\\.hs$" flymake-Haskell-init flymake-simple-java-cleanup)
+;;       flymake-allowed-file-name-masks)
+;; (push '(".+\\.lhs$" flymake-Haskell-init flymake-simple-java-cleanup)
+;;       flymake-allowed-file-name-masks)
+;; (push
+;;  '("^\\(\.+\.hs\\|\.lhs\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)"
+;;    1 2 3 4) flymake-err-line-patterns)
 
-(add-hook 'haskell-mode-hook
-          '(lambda ()
-             (if (not (null buffer-file-name)) (flymake-mode))))
+;; (add-hook 'haskell-mode-hook
+;;           '(lambda ()
+;;              (if (not (null buffer-file-name)) (flymake-mode))))
 
-;; Display messages at the minibuffer
-(global-set-key "\C-cd"
-                'flymake-show-and-sit )
-(defun flymake-show-and-sit ()
-  "Displays the error/warning for the current line in the minibuffer"
-  (interactive)
-  (progn
-    (let* ( (line-no             (flymake-current-line-no) )
-            (line-err-info-list  (nth 0 (flymake-find-err-info flymake-err-info line-no)))
-            (count               (length line-err-info-list))
-            )
-      (while (> count 0)
-        (when line-err-info-list
-          (let* ((file       (flymake-ler-file (nth (1- count) line-err-info-list)))
-                 (full-file  (flymake-ler-full-file (nth (1- count) line-err-info-list)))
-                 (text (flymake-ler-text (nth (1- count) line-err-info-list)))
-                 (line       (flymake-ler-line (nth (1- count) line-err-info-list))))
-            (message "[%s] %s" line text)
-            )
-          )
-        (setq count (1- count)))))
-  (sit-for 60.0)
-  )
-;;
+;; ;; Display messages at the minibuffer
+;; (global-set-key "\C-cd"
+;;                 'flymake-show-and-sit )
+;; (defun flymake-show-and-sit ()
+;;   "Displays the error/warning for the current line in the minibuffer"
+;;   (interactive)
+;;   (progn
+;;     (let* ( (line-no             (flymake-current-line-no) )
+;;             (line-err-info-list  (nth 0 (flymake-find-err-info flymake-err-info line-no)))
+;;             (count               (length line-err-info-list))
+;;             )
+;;       (while (> count 0)
+;;         (when line-err-info-list
+;;           (let* ((file       (flymake-ler-file (nth (1- count) line-err-info-list)))
+;;                  (full-file  (flymake-ler-full-file (nth (1- count) line-err-info-list)))
+;;                  (text (flymake-ler-text (nth (1- count) line-err-info-list)))
+;;                  (line       (flymake-ler-line (nth (1- count) line-err-info-list))))
+;;             (message "[%s] %s" line text)
+;;             )
+;;           )
+;;         (setq count (1- count)))))
+;;   (sit-for 60.0)
+;;   )
 
 ;; haskell-hoogle
 (add-hook 'haskell-mode-hook

@@ -1,3 +1,8 @@
+(setq auto-mode-alist
+      (append '(
+                ("wscript$" . python-mode)
+                ) auto-mode-alist))
+
 (defun python-partial-symbol ()
   "Return the partial symbol before point (for completion)."
   (let ((end (point))
