@@ -97,9 +97,9 @@ if [[ $HOSTNAME = "sage" ]]; then
 elif [[ $VENDOR = "apple" ]]; then
   PROMPT='%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
 elif [[ $HOSTNAME = "hofmann" ]]; then
-  PROMPT='%{$fg[red]%}${HOST}${WINDOW:+"$WINDOW"}$'
+  PROMPT='%{$fg[red]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
 else
-  PROMPT='%{$fg[green]%}${HOST}${WINDOW:+"$WINDOW"}$'
+  PROMPT='%{$fg[green]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
 fi
 
 #PROMPT=$PROMPT'%{$fg[green]%}${USER}'
