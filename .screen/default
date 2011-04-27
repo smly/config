@@ -1,7 +1,7 @@
 escape ^tt
 
+startup_message off
 termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
-flow off
 # key bindings
 bindkey -k k1 select 0
 bindkey -k k2 select 1
@@ -29,7 +29,7 @@ bind w command -c REGION
 
 ## http://www.rubyist.net/~rubikitch/computer/screen/#label:11
 bind r eval 'echo "Resize window"' 'command -c RESIZE'
-bind -c RESIZE ^]  command
+bind -c RESIZE ^] command
 bind -c RESIZE j eval 'resize +1' 'command -c RESIZE'
 bind -c RESIZE k eval 'resize -1' 'command -c RESIZE'
 bind -c RESIZE h eval 'resize -v -1' 'command -c RESIZE'
@@ -48,6 +48,7 @@ bind g
 
 defbce on
 term xterm-256color
+#term screen-256color
 defscrollback 4000
 vbell off
 
@@ -64,11 +65,11 @@ vbell off
 # 8 unused/illegal w white s standout
 # 9 transparent y yellow u underline
 caption splitonly "%3n %f %t"
-hardstatus alwayslastline "%{rk}T: %-w %{..w}%{!}%n%f%t%{rk} %+w %=  %{..r}%0`"
+hardstatus alwayslastline "%{rk}]: %-w %{..w}%{!}%n%f%t%{rk} %+w %= %{..r}%0`"
 
 #backtick 0 0 0 ${HOME}/.screen/backtick.rb
 #backtick 1 0 0 ${HOME}/.screen/feed.rb
 
 hardcopydir ${HOME}/.screen
-
-cjkwidth on
+#flow off
+#cjkwidth on
