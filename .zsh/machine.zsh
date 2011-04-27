@@ -1,9 +1,11 @@
 # -*- shell-script -*-
+SCREENRC=~/.screen/default
 case $HOSTNAME in
     sage)
         ;;
     shapiro)
         export PATH=$PATH:~/.gem/ruby/1.8/bin
+        SCREENRC=~/.screen/$HOSTNAME
         ;;
     moss)
         export PATH=$PATH:/usr/local/Cellar/python/2.6.6/bin/ 
@@ -21,3 +23,4 @@ case $HOSTNAME in
     apple)
         ;;
 esac
+export SCREENRC
