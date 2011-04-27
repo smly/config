@@ -1,6 +1,16 @@
 #!/bin/zsh
 
-function cd() { builtin cd $@ && ls --color }
+function cd() {
+    case "${OSTYPE}" in
+        freebsd*|darwin*)
+            builtin cd $@ && ls -G -w
+            ;;
+        linux*)
+            builtin cd $@ && ls --color
+            ;;
+    esac
+}
+
 function pcat() { cat /proc/$1/status }
 function histall { history -E 1 }
 

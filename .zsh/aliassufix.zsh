@@ -1,3 +1,5 @@
+# -*- shell-script -*-
+
 alias -s pdf="acroread"
 
 alias -s tex="platex"

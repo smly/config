@@ -1,3 +1,5 @@
+# -*- shell-script -*-
+
 #########################
 ######################### PROMPT
 
@@ -52,7 +54,7 @@ function _prompt_compute_vars() {
     _git_compute_vars
 
     local pdate
-    pdate=$(date +"%m/%_d %H:%M")
+    pdate=$(date +"%m/%d %H:%M")
     export __ZSH_RPROMPT_DATE="$pdate"
 
     local git_dir
@@ -83,14 +85,16 @@ setopt prompt_subst
 
 _prompt_compute_vars
 
+
 # Attribute codes:
 # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
 # Text color codes:
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
 # Background color codes:
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
-
 if [[ $HOSTNAME = "sage" ]]; then
+  PROMPT='%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
+elif [[ $VENDOR = "apple" ]]; then
   PROMPT='%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
 elif [[ $HOSTNAME = "hofmann" ]]; then
   PROMPT='%{$fg[red]%}${HOST}${WINDOW:+"$WINDOW"}$'

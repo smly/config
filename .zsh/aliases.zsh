@@ -1,3 +1,4 @@
+# -*- shell-script -*-
 # fast directory change
 alias ..='cd .. && ls'
 alias ...='cd ../.. && ls'
@@ -11,6 +12,7 @@ alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias d='dirs -v'
 
 # short git
+alias gg="git graph"
 alias gT="git status"
 alias gU="git add -u"
 alias gD="git diff HEAD"
@@ -34,7 +36,7 @@ alias mkdir='nocorrect mkdir'
 
 # applications
 alias gc="gcalcli"
-alias gcr="gcalcli --cals=owner agenda `date -I` `date --date '20 day' -I`"
+#alias gcr="gcalcli --cals=owner agenda `date -I` `date --date '20 day' -I`"
 
 # hadoop
 # alias dfsls="$HADOOP/bin/hadoop dfs -ls"

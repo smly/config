@@ -35,6 +35,8 @@ local COLOR_BLINK='\e[5m'
 
 HOST_OS=$HOST_OS_HASH[$HOSTNAME]
 [ -z $HOST_OS ] && HOST_OS="unknown"
+[[ $VENDOR = "apple" ]] && HOST_OS="Mac OS"
+
 export HOST_OS
 local MSG=""
 case $HOST_OS in

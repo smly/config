@@ -92,9 +92,9 @@
     (font-lock-mode t))))
 
 ;; no bar
-(tool-bar-mode nil)
+;(tool-bar-mode nil)
 (menu-bar-mode nil)
-(set-scroll-bar-mode nil)
+;(set-scroll-bar-mode nil)
 
 ;; no bell
 ;; (setq visible-bell t)

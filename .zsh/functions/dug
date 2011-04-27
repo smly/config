@@ -1,0 +1,3 @@
+function dug() {
+  du | awk '$1 ~ /(.+)G$/'
+}

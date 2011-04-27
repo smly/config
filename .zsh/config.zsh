@@ -1,7 +1,6 @@
-#########################
-######################### ZSH CONFIG
+# -*- shell-script -*-
 
-### Pager
+### pager
 if which less >/dev/null; then
   PAGER=less
   export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -16,33 +15,10 @@ if which less >/dev/null; then
 else
   PAGER=more
 fi
-
 export PAGER
 
-#########################
-#########################
-
-#export JAVA_HOME=/usr/java/jdk1.6.0_11
-export HOME=/home/$USER
-
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-export PATH
-PATH=$PATH:$HOME/.cabal/bin          # haskell-cabal
-#PATH=$PATH:$HOME/.gem/ruby/1.8/bin   # ruby-gems
-PATH=$PATH:$HOME/.gem/ruby/1.9.1/bin
-PATH=$PATH:/usr/bin/perlbin/vendor   # perl
-PATH=$PATH:$JAVA_HOME/bin            # java
-PATH=$PATH:$HOME/.zsh/utils          # zsh scripts
-PATH=$PATH:$HOME/bin                 # user bin
-PATH=$PATH:/usr/local/texlive/p2008/bin/i686-pc-linux-gnu  # texlive
-#PATH=/usr/local/teTeX/bin:$PATH
-
-#export HADOOP=$HOME/intern/hatenaintern2/smly/hadoop-0.18.0
-#export TEXINPUTS=$HOME/.tex.d/
-export CLASSPATH=$CLASSPATH:/home/smly/gitws/naist-exercises/dicision_tree/weka-3-6-1/weka.jar
-export MANPATH=$MANPATH:$HOME/man:/usr/local/texlive/2008/texmf/doc/man
-export EDITOR=emacs
-
+# etc
+export EDITOR="emacs"
 export DISPLAY=:0.0
 
 ### locale
@@ -52,8 +28,14 @@ export LANG="ja"
 
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/pgsql/lib
 
+
+
 #########################
 ######################### EXTRA
+
+# bindkey
+bindkey "^[f" vi-forward-word
+bindkey "^[b" vi-backward-word 
 
 ## replace-string
 autoload -U replace-string
@@ -81,12 +63,14 @@ bindkey '^x^p' predict-off
 #zstyle ':predict' toggle true
 zstyle ':predict' verbose true
 
+
+
 #########################
 ######################### HISTORY SETTINGS
 
 HISTFILE=~/.histfile
-HISTSIZE=30000 # on memory
-SAVEHIST=300000
+HISTSIZE=60000 # on memory
+SAVEHIST=70000
 
 setopt share_history      # all zsh sessions share the same history files
 setopt hist_ignore_dups   # ignore same commands run twice
@@ -110,6 +94,8 @@ bindkey "^N" history-beginning-search-forward-end
 
 bindkey "^w" vi-backward-kill-word
 
+
+
 #########################
 ######################### OPTIONS
 
@@ -126,16 +112,19 @@ setopt nohistbeep        # no hintbeep
 
 setopt complete_aliases  # aliased ls needs if file/dir completions work
 
-#########################
-#########################
 
-# completion
-fpath=(~/.zsh/completion $fpath)
-autoload -U ~/.zsh/completion/*(:t)
 
-# commands 
-fpath=(~/.zsh/commands $fpath)
-autoload -U ~/.zsh/commands/*(:t)
+# load functions
+function load_functions(){
+  local function_path=$1
+  if [[ -f $function_path ]]; then
+    fpath=($function_path $fpath)
+    autoload -U "$function_path/*(:t)"
+  fi
+}
+
+load_functions "~/.zsh/completion"
+load_functions "~/.zsh/commands"
 
 # functions
 [[ -f ~/.zsh/functions/functions ]] && . ~/.zsh/functions/functions
@@ -144,15 +133,13 @@ autoload -U ~/.zsh/commands/*(:t)
 
 # ls color
 case "${OSTYPE}" in
-freebsd*|darwin*)
-  alias ls="ls -G -w"
-  ;;
-linux*)
-  alias ls="ls --color"
-  ;;
+    freebsd*|darwin*)
+        alias ls="ls -G -w"
+        ;;
+    linux*)
+        alias ls="ls --color"
+        ;;
 esac
-
-# color
 autoload colors
 colors
 

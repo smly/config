@@ -54,9 +54,9 @@
 
 ;; load
 (load "init-general")
-(load "init-xemacs")
+;(load "init-xemacs")
 (load "init-color")
-(load "init-ess") ; eamcs speaks statistics
+;(load "init-ess") ; eamcs speaks statistics
 ;(load "init-skk")
 (load "init-sdic")
 (load "init-gitit") ; (markdown, git)
