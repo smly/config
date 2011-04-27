@@ -9,8 +9,7 @@ else
   echo $STY
   # lunch screen
   if [ "$STY" = "" ]; then
-    screen
-    exit 0
+    screen -c ${SCREENRC}
   else
     # keychain
 #    [ -e `which keychain` ] && keychain --nogui id_rsa
