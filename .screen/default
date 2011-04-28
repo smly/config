@@ -65,7 +65,7 @@ vbell off
 # 8 unused/illegal w white s standout
 # 9 transparent y yellow u underline
 caption splitonly "%3n %f %t"
-hardstatus alwayslastline "%{rk}]: %-w %{..w}%{!}%n%f%t%{rk} %+w %= %{..r}%0`"
+hardstatus alwayslastline "%{rk}T: %-w %{..w}%{!}%n%f%t%{rk} %+w %= %{..r}%0`"
 
 #backtick 0 0 0 ${HOME}/.screen/backtick.rb
 #backtick 1 0 0 ${HOME}/.screen/feed.rb
