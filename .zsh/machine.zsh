@@ -4,11 +4,12 @@ case $HOSTNAME in
     sage)
         ;;
     shapiro)
-        export PATH=$PATH:~/.gem/ruby/1.8/bin
+        export HADOOP_HOME=/usr/local/hadoop
+        export PATH=$PATH:~/.gem/ruby/1.8/bin:$HADOOP_HOME/bin
         SCREENRC=~/.screen/$HOSTNAME
         ;;
     moss)
-        export PATH=$PATH:/usr/local/Cellar/python/2.6.6/bin/ 
+        export PATH=$PATH:/usr/local/Cellar/python/2.6.6/bin
         ;;
     hofmann)
         ;;
