@@ -9,7 +9,8 @@ else
   echo $STY
   # lunch screen
   if [ "$STY" = "" ]; then
-    screen -c ${SCREENRC}
+    sessionName=`date +"%m%d-%H%M%S"`
+    screen -S ${sessionName} -c ${SCREENRC}
   else
     # keychain
 #    [ -e `which keychain` ] && keychain --nogui id_rsa
