@@ -8,8 +8,9 @@ case $HOSTNAME in
         export PATH=$PATH:~/.gem/ruby/1.8/bin:$HADOOP_HOME/bin
         SCREENRC=~/.screen/$HOSTNAME
         ;;
-    moss)
-        export PATH=$PATH:/usr/local/Cellar/python/2.6.6/bin
+    moss|softbank*)
+        export PATH=$PATH:~/.gem/ruby/1.8/bin:/usr/local/Cellar/python/2.6.6/bin
+        SCREENRC=~/.screen/shapiro
         ;;
     hofmann)
         ;;
@@ -17,7 +18,7 @@ case $HOSTNAME in
         ;;
     sussman)
         ;;
-    pine2|pine3|pine4|pine5|pine6)
+    pine*)
         ;;
     cacao|parsley|papaya|tomato|carrot|radish|pepper|bean|cactus|chasen)
         ;;
