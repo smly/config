@@ -1,16 +1,20 @@
-[user]
-	name = smly
-	email = eowner@gmail.com
-[color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-[alias]
+[user]  
+        name = smly
+        email = eowner@gmail.com
+[color] 
+        diff = auto
+        status = auto
+        branch = auto
+        grep = auto
+        interactive = auto
+[alias] 
         co = checkout
         ci = commit -a
         st = status
         up = pull --rebase
+        graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%cn] %Cgreen%d%Creset %s\" --all --date=local
 [github]
         user = smly
         email = eowner@gmail.com
+[core]  
+        pager = lv -c
