@@ -9,7 +9,11 @@ case $HOSTNAME in
         SCREENRC=~/.screen/$HOSTNAME
         ;;
     moss|softbank*)
-        export PATH=$PATH:~/.gem/ruby/1.8/bin:/usr/local/Cellar/python/2.6.6/bin
+#        export PATH=$PATH:~/.gem/ruby/1.8/bin:/usr/local/Cellar/python/2.6.6/bin
+        PATH=$PATH:/usr/local/Cellar/ruby/1.9.2-p180/bin
+        PATH=$PATH:/usr/local/Cellar/python/2.6.6/bin
+        PATH=$PATH:/usr/local/Cellar/smlnj/110.72/libexec/bin
+        export PATH
         SCREENRC=~/.screen/shapiro
         ;;
     hofmann)
