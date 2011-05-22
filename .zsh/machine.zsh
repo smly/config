@@ -5,7 +5,9 @@ case $HOSTNAME in
         ;;
     shapiro)
         export HADOOP_HOME=/usr/local/hadoop
-        export PATH=$PATH:~/.gem/ruby/1.8/bin:$HADOOP_HOME/bin
+        PATH=~/.gem/ruby/1.8/bin:$HADOOP_HOME/bin:$PATH
+        PATH=/usr/local/share/python:$PATH
+        export PATH
         SCREENRC=~/.screen/$HOSTNAME
         ;;
     moss|softbank*)
