@@ -1,5 +1,12 @@
 # -*- shell-script -*-
 SCREENRC=~/.screen/default
+case `hostname` in
+    *.*.h)
+        PATH=$HOME/local/bin:$PATH
+        PATH=/usr/sbin:/sbin:$PATH
+        export PATH
+        ;;
+esac
 case $HOSTNAME in
     sage)
         ;;
