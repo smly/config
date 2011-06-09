@@ -28,8 +28,7 @@ alias ll="ls -l"
 alias lh="ls -lh"
 alias em="emacs -nw"
 alias tgif="lang=C tgif"
-alias tp="top -d 0.1"
-
+alias tp="htop -d 0.1"
 # no spelling correnction on mv
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
