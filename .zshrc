@@ -17,6 +17,10 @@ export HOSTNAME=${HOSTNAME%%.*}
 # perl
 [ -e ~/perl5/perlbrew/etc/bashrc ] && . ~/perl5/perlbrew/etc/bashrc
 
+# ccache
+[ -f ~/.ccacherc        ] && . ~/.ccacherc
+
 # customize
 [ -e ~/.zsh/machine.zsh ] && . ~/.zsh/machine.zsh
 [ -e ~/.zsh/start.zsh   ] && . ~/.zsh/start.zsh
+
