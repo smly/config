@@ -130,6 +130,7 @@ load_functions "~/.zsh/commands"
 [[ -f ~/.zsh/functions/functions ]] && . ~/.zsh/functions/functions
 [[ -f ~/.zsh/functions/printpdf ]] && . ~/.zsh/functions/printpdf
 [[ -f ~/.zsh/functions/bgm ]] && . ~/.zsh/functions/bgm
+[[ -f ~/.zsh/functions/pidwait ]] && . ~/.zsh/functions/pidwait
 
 # ls color
 case "${OSTYPE}" in
