@@ -1,6 +1,9 @@
 # set hostname
-[ -z "$HOSTNAME" ] && HOSTNAME=`hostname -s`
-export HOSTNAME=${HOSTNAME%%.*}
+if [[ -z $HOSTNAME || $HOSTNAME = "localhost" ]]; then
+   HOSTNAME=`hostname`
+   HOSTNAME=${HOSTNAME%%.*}
+   export HOSTNAME
+fi
 
 [ -e ~/.zsh/config.zsh        ] && . ~/.zsh/config.zsh
 [ -e ~/.zsh/path.zsh          ] && . ~/.zsh/path.zsh
