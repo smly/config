@@ -32,12 +32,16 @@ myManageHook = composeAll
     ]
 
 main = do
---    spawn "xlock -mode demon" -- lock desktop first!
+{-
+    spawn "xlock -mode demon" -- lock desktop first!
+-}
     xmproc <- spawnPipe "/usr/bin/xmobar /home/smly/.xmobarrc"
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> myManageHook
                         <+> manageHook defaultConfig
---        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+{-
+        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+-}
         , layoutHook = avoidStruts $
                        smartBorders (
 --                                     onWorkspace "dev1" grids $
@@ -62,9 +66,11 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_o), spawn "/home/smly/bin/screen-lab")
         , ((mod4Mask .|. controlMask, xK_o), spawn "/home/smly/bin/screen-presen")
         , ((mod4Mask .|. shiftMask, xK_b), sendMessage ToggleStruts)
---        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 greenColorizer)
---        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 defaultColorizer)
---        , ((mod4Mask, xK_f), bringSelected $ gsconfig3 defaultColorizer)
+{-
+        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 greenColorizer)
+        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 defaultColorizer)
+        , ((mod4Mask, xK_f), bringSelected $ gsconfig3 defaultColorizer)
+-}
         , ((mod4Mask, xK_f), spawn "amixer set Master toggle") -- amixer_toggle")
         , ((mod4Mask, xK_s), spawnSelected defaultGSConfig commands)
         , ((mod4Mask, xK_p), spawn "which lsx && dmenu_run -nb '#000000' -nf grey -fn \"-mplus-fxd-medium-r-normal-*-10-*-*-*-*-*-jisx0208.1990-*\" -b || (exe=`dmenu_path | dmenu` && eval \"exec $exe\")")
@@ -73,13 +79,16 @@ main = do
             where
               commands = ["urxvt", "wicd-client -n", "firefox", "amixer_toggle", "synergys -f sage", "thunderbird3"] ++ map (\n->"vol "++show (n::Int)) [15,30..90]
 
-standardLayouts = defaultTall   |||
+standardLayouts =
+{-
+                  defaultTall   |||
                   Mirror tiled  |||
---                  Grid |||
-                  Dishes 2 (1/7) |||
---                  dragPane Horizontal 0.1 0.5 |||
---                  dragPane Vertical 0.1 0.5 |||
+                  Grid |||
+                  dragPane Horizontal 0.1 0.5 |||
+                  dragPane Vertical 0.1 0.5 |||
+-}
                   ThreeCol 1 (3/100) (1/2) |||
+                  Dishes 2 (1/7) |||
                   Full
                 where
                   tiled       = Tall nmaster delta ratio
