@@ -1,10 +1,8 @@
 # screen
-if [[ ${tty} = /dev/tty1 ]]; then
+if [[ ${TTY} = /dev/tty1 ]]; then
   # start X
-  if [[ -z "$DISPLAY" ]]; then
-    startx
-    logout
-  fi
+  echo "Start X..."
+  exec startx
 else
   echo $STY
   # lunch screen
