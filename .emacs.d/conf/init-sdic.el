@@ -16,10 +16,10 @@
      (setq sdicf-array-command "/usr/bin/sary")
      ;; sdicファイルのある位置を設定し、arrayコマンドを使用するよう設定(現在のところ英和のみ)
      (setq sdic-eiwa-dictionary-list
-           '((sdicf-client "/usr/local/share/dict/eijirou.sdic"
+           '((sdicf-client "/dev/shm/eijirou.sdic"
                            (strategy array)))
            sdic-waei-dictionary-list
-           '((sdicf-client "/usr/local/share/dict/waeijirou.sdic"
+           '((sdicf-client "/home/smly/dict/waeijirou.sdic"
                            (strategy array))))
      ;; saryを直接使用できるように sdicf.el 内に定義されているarrayコマンド用関数を強制的に置換
      (fset 'sdicf-array-init 'sdicf-common-init)

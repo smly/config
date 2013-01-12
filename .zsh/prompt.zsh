@@ -53,10 +53,6 @@ function _git_compute_vars() {
 function _prompt_compute_vars() {
     _git_compute_vars
 
-    local pdate
-    pdate=$(date +"%m/%d %H:%M")
-    export __ZSH_RPROMPT_DATE="$pdate"
-
     local git_dir
     git_dir=${${__ZSH_GIT_DIR}%% }
 
@@ -103,12 +99,13 @@ else
 fi
 
 #PROMPT=$PROMPT'%{$fg[green]%}${USER}'
-PROMPT=$PROMPT'%{$reset_color%} '
+TPROMPT='%{$reset_color%}'
 
-RPROMPT='${__ZSH_GIT_STATE}'
-RPROMPT=$RPROMPT'%{$fg[yellow]%}['       # [
-RPROMPT=$RPROMPT'${__ZSH_RPROMPT_DIR}'   # rprompt_dir (git dir)
-RPROMPT=$RPROMPT'%{$fg[red]%}:%!'        # # of history
-RPROMPT=$RPROMPT'%{$fg[yellow]%}]'       # ]
-RPROMPT=$RPROMPT'%{$fg[white]%}(${__ZSH_RPROMPT_DATE})'  # date
-RPROMPT=$RPROMPT'%{$reset_color%}'       # reset
+TPROMPT=$TPROMPT'${__ZSH_GIT_STATE}'
+TPROMPT=$TPROMPT'%{$fg[yellow]%}['       # [
+TPROMPT=$TPROMPT'${__ZSH_RPROMPT_DIR}'   # rprompt_dir (git dir)
+TPROMPT=$TPROMPT'%{$fg[red]%}:%!'        # # of history
+TPROMPT=$TPROMPT'%{$fg[yellow]%}]'       # ]
+TPROMPT=$TPROMPT'%{$fg[white]%}'  # date
+TPROMPT=$TPROMPT'%{$reset_color%}'       # reset
+PROMPT=$TPROMPT$PROMPT'%{$reset_color%} '

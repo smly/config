@@ -1,5 +1,7 @@
 # -*- shell-script -*-
 SCREENRC=~/.screen/default
+
+HOSTNAME=ritchie
 case `hostname` in
     *.*.h)
         PATH=$HOME/local/bin:$PATH
@@ -24,6 +26,15 @@ case $HOSTNAME in
         PATH=$PATH:/usr/local/Cellar/smlnj/110.72/libexec/bin
         export PATH
         SCREENRC=~/.screen/shapiro
+        ;;
+    ritchie)
+        alias termtter='ruby ~/gitws/github/termtter/bin/termtter'
+        export PATH=$HOME/ws/android/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin:$PATH
+        export ARCH=arm
+        export SUBARCH=arm
+        export CROSS_COMPILE=arm-eabi-
+
+        export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
         ;;
     hofmann)
         ;;

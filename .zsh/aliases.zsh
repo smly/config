@@ -7,6 +7,8 @@ alias .....='cd ../../../.. && ls'
 alias ......='cd ../../../../.. && ls'
 alias .......='cd ../../../../../.. && ls'
 
+alias _=underscore
+
 # directory stack
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias d='dirs -v'
