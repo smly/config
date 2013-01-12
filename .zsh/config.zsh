@@ -132,6 +132,8 @@ load_functions "~/.zsh/commands"
 [[ -f ~/.zsh/functions/bgm ]] && . ~/.zsh/functions/bgm
 [[ -f ~/.zsh/functions/pidwait ]] && . ~/.zsh/functions/pidwait
 
+[[ -f ~/.zsh/functions/z.sh ]] && . ~/.zsh/functions/z.sh
+
 # ls color
 case "${OSTYPE}" in
     freebsd*|darwin*)
