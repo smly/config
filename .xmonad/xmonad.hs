@@ -44,8 +44,8 @@ main = do
                                      onWorkspace "web4" mostlyTall standardLayouts)
         , logHook = dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
-                        , ppCurrent = xmobarColor "#994242" "" . wrap "<" ">"
-                        , ppTitle = xmobarColor "#f07777" "" . shorten 50
+                        , ppCurrent = xmobarColor "#eeee00" "" . wrap "<" ">"
+                        , ppTitle = xmobarColor "#eeee00" "" . shorten 50
                         }
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         , terminal = "urxvt"
@@ -53,7 +53,7 @@ main = do
         , borderWidth = 2
         , workspaces = ["dev1","dev2","dev3","web4"] ++ map show [5..9]
         , normalBorderColor  = "#323232"
-        , focusedBorderColor = "#c03000"
+        , focusedBorderColor = "#00c0a0"
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xlock -mode demon")
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
@@ -63,11 +63,12 @@ main = do
         , ((mod4Mask .|. controlMask, xK_o), spawn "/home/smly/bin/screen-presen")
         , ((mod4Mask .|. shiftMask, xK_b), sendMessage ToggleStruts)
 --        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 greenColorizer)
-        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 defaultColorizer)
+--        , ((mod4Mask, xK_g), goToSelected $ gsconfig3 defaultColorizer)
 --        , ((mod4Mask, xK_f), bringSelected $ gsconfig3 defaultColorizer)
         , ((mod4Mask, xK_f), spawn "amixer set Master toggle") -- amixer_toggle")
         , ((mod4Mask, xK_s), spawnSelected defaultGSConfig commands)
-        , ((mod4Mask, xK_p), spawn "exe=`dmenu_path | dmenu -nb '#000000' -nf grey -fn \"-mplus-fxd-medium-r-normal-*-10-*-*-*-*-*-jisx0208.1990-*\" -b ` && eval \"exec $exe\"")
+        , ((mod4Mask, xK_p), spawn "which lsx && dmenu_run -nb '#000000' -nf grey -fn \"-mplus-fxd-medium-r-normal-*-10-*-*-*-*-*-jisx0208.1990-*\" -b || (exe=`dmenu_path | dmenu` && eval \"exec $exe\")")
+--        , ((mod4Mask, xK_p), spawn "exe=`dmenu_path | dmenu -nb '#000000' -nf grey -fn \"-mplus-fxd-medium-r-normal-*-10-*-*-*-*-*-jisx0208.1990-*\" -b ` && eval \"exec $exe\"")
         ]
             where
               commands = ["urxvt", "wicd-client -n", "firefox", "amixer_toggle", "synergys -f sage", "thunderbird3"] ++ map (\n->"vol "++show (n::Int)) [15,30..90]
@@ -78,7 +79,7 @@ standardLayouts = defaultTall   |||
                   Dishes 2 (1/7) |||
 --                  dragPane Horizontal 0.1 0.5 |||
 --                  dragPane Vertical 0.1 0.5 |||
---                  ThreeCol 1 (3/100) (1/2) |||
+                  ThreeCol 1 (3/100) (1/2) |||
                   Full
                 where
                   tiled       = Tall nmaster delta ratio
@@ -89,6 +90,7 @@ standardLayouts = defaultTall   |||
 
 mostlyTall = ResizableTall 1 (3/100) (1/2) [] ||| Full
 
+{-
 gsconfig3 colorizer = (buildDefaultGSConfig colorizer)
     { gs_cellheight = 30
     , gs_cellwidth = 100
@@ -109,6 +111,7 @@ gsconfig3 colorizer = (buildDefaultGSConfig colorizer)
                                ]
          -- jump back to the center with the spacebar, regardless of the current position.
          reset = M.singleton (0,xK_space) (const (0,0))
+-}
 
 greenColorizer = colorRangeFromClassName
                  black            -- lowest inactive bg
