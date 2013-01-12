@@ -8,6 +8,11 @@ case `hostname` in
         ;;
 esac
 case $HOSTNAME in
+    robert)
+        PATH=$PATH:~/.gem/ruby/1.9/bin
+        export PATH
+        SCREENRC=~/.screen/default
+        ;;
     sage)
         ;;
     shapiro)
