@@ -14,6 +14,11 @@ case $HOSTNAME in
         export PATH
         SCREENRC=~/.screen/default
         ;;
+    edmonds)
+        PATH=$PATH:~/.gem/ruby/1.9.1/bin
+        PATH=$PATH:/opt/java/bin
+        export PATH
+        ;;
     sage)
         ;;
     shapiro)

@@ -17,4 +17,4 @@
         user = smly
         email = eowner@gmail.com
 [core]  
-        pager = lv -c
+        pager = less -c
