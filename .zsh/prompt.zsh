@@ -92,23 +92,24 @@ _prompt_compute_vars
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
 # Background color codes:
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+PROMPT='%{$reset_color%} '
+
+PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
+PROMPT=$PROMPT'%{$fg[yellow]%}['       # [
+PROMPT=$PROMPT'${__ZSH_RPROMPT_DIR}'   # rprompt_dir (git dir)
+PROMPT=$PROMPT'%{$fg[red]%}:%!'        # # of history
+PROMPT=$PROMPT'%{$fg[yellow]%}]'       # ]
+PROMPT=$PROMPT'%{$fg[white]%}(${__ZSH_RPROMPT_DATE})'  # date
+
 if [[ $HOSTNAME = "sage" ]]; then
-  PROMPT='%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
+  PROMPT=$PROMPT'%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
 elif [[ $VENDOR = "apple" ]]; then
-  PROMPT='%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
+  PROMPT=$PROMPT'%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
 elif [[ $HOSTNAME = "hofmann" ]]; then
-  PROMPT='%{$fg[red]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
+  PROMPT=$PROMPT'%{$fg[red]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
 else
-  PROMPT='%{$fg[green]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
+  PROMPT=$PROMPT'%{$fg[green]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
 fi
 
-#PROMPT=$PROMPT'%{$fg[green]%}${USER}'
 PROMPT=$PROMPT'%{$reset_color%} '
-
-RPROMPT='${__ZSH_GIT_STATE}'
-RPROMPT=$RPROMPT'%{$fg[yellow]%}['       # [
-RPROMPT=$RPROMPT'${__ZSH_RPROMPT_DIR}'   # rprompt_dir (git dir)
-RPROMPT=$RPROMPT'%{$fg[red]%}:%!'        # # of history
-RPROMPT=$RPROMPT'%{$fg[yellow]%}]'       # ]
-RPROMPT=$RPROMPT'%{$fg[white]%}(${__ZSH_RPROMPT_DATE})'  # date
-RPROMPT=$RPROMPT'%{$reset_color%}'       # reset
+#PROMPT=$PROMPT'%{$fg[green]%}${USER}'
