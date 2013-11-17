@@ -1,15 +1,15 @@
 Rxvt.scrollBar: false
 Rxvt.lineSpace: 0
-Rxvt.letterSpace: -1
+Rxvt.letterSpace: 0
 Rxvt.cursorColor: goldenrod
-
-urxvt.font: xft:Ricty Discord:size=10:style=bold
-urxvt.transparent: true
-
 Rxvt.shading: 25
-Rxvt.background: #111111
+Rxvt.background: #222222
 Rxvt.foreground: white
 Rxvt.tintColor: gray70
+
+urxvt.font: xft:Ricty Discord:size=10:style=normal
+urxvt.boldFont: xft:Ricty Discord:size=10:style=bold
+urxvt.transparent: false
 
 urxvt*color0: #1B1D1E
 urxvt*color1: #F92672

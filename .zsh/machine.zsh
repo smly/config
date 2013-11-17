@@ -14,6 +14,13 @@ case $HOSTNAME in
         export PATH
         SCREENRC=~/.screen/default
         ;;
+    adamic)
+        PATH=$PATH:~/.gem/ruby/1.9.1/bin
+        export PATH
+        export LC_ALL=en_US.UTF-8
+        export LANGUAGE=en
+        export LANG=en
+        ;;
     edmonds)
         PATH=$PATH:~/.gem/ruby/1.9.1/bin
         PATH=$PATH:/opt/java/bin
