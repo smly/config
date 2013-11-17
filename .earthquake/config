@@ -1,5 +1,5 @@
-path = "/home/marzio/.earthquake"
-token, secret = open("#{path}/secret").read.split(/\n/)
+path = "#{Dir.home}/.earthquake"
+token, secret = open("#{path}/secret", 'r').read.split(/\n/)
 annoying_users = open("#{path}/annoying", 'r').read.split(/\n/).select{|i|i[/^[^#]/]}
 annoying_hashtag = open("#{path}/annoying_hashtag", 'r').read.split(/\n/).select{|i|i[/^#/]}
 stalking_users = open("#{path}/stalking", 'r').read.split(/\n/).select{|i|i[/^[^#]/]}
