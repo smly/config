@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 path = "#{Dir.home}/.earthquake"
 
 annoying_users = open("#{path}/annoying", 'r').read.split(/\n/).select{|i|i[/^[^#]/]}
