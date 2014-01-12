@@ -1,5 +1,7 @@
 # -*- shell-script -*-
 SCREENRC=~/.screen/default
+alias tmux="TERM=screen-256color-bce tmux"
+
 case `hostname` in
     *.*.h)
         PATH=$HOME/local/bin:$PATH
