@@ -1,0 +1,19 @@
+#!/bin/bash
+[[ -e ~/gitws/kaggle-kddcup2014/venv/bin/activate ]] && source ~/gitws/kaggle-kddcup2014/venv/bin/activate
+LOG_FILENAME=log/`date +"%Y%m%d_%H%M%S_"`${1//\//_}.log
+
+echo "------------------------" | tee $LOG_FILENAME
+echo ">> git show --stat" | tee -a $LOG_FILENAME
+git show --stat | tee -a $LOG_FILENAME
+echo "------------------------" | tee -a $LOG_FILENAME
+echo ">> git diff" | tee -a $LOG_FILENAME
+git diff | tee -a $LOG_FILENAME
+echo "------------------------" | tee -a $LOG_FILENAME
+echo "LOGFILE: "$LOG_FILENAME
+echo "CMD: "$*     | tee -a $LOG_FILENAME
+echo `LC_ALL=C date` | tee -a $LOG_FILENAME
+echo "------------------------" | tee -a $LOG_FILENAME
+
+PYTHONPATH=`pwd` python -W ignore $* 2>&1 | tee -a $LOG_FILENAME
+
+echo "LOGFILE: "$LOG_FILENAME

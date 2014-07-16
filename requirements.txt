@@ -1,0 +1,6 @@
+numpy==1.8.1
+scipy==0.14.0
+pandas==0.14.1
+scikit-learn==0.15.0
+python-dateutil==2.2
+openpyxl==1.8.6
