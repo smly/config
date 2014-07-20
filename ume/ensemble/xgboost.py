@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-import utils
 import os
 
 import numpy as np
 import pandas as pd
-import xgboost_origin as xgb
+import ume.ensemble.xgboost_origin as xgb
 
 
 class XGBoost(object):
