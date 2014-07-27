@@ -1,3 +1,7 @@
 function pidwait() {
-    while [[ -e /proc/$1 ]]; do sleep 1; done
+    while [ -e /proc/$1 ]; do sleep 1; done
+}
+
+function pidgrep() {
+    ps a | grep $1 | grep -v grep | awk '{print $1}'
 }
