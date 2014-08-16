@@ -9,7 +9,7 @@ import scipy.sparse as ss
 import scipy.io as sio
 import pandas as pd
 
-from ume.utils import save_mat, dynamic_load, load_settings
+from ume.utils import feature_functions, save_mat, dynamic_load, load_settings
 
 
 def parse_args():
@@ -22,6 +22,7 @@ def parse_args():
         help='sub-commands for instant action')
 
     f_parser = subparsers.add_parser('feature')
+    f_parser.add_argument('-a', '--all', action='store_true', default=False)
     f_parser.add_argument('-n', '--name', type=str, required=True)
     i_parser = subparsers.add_parser('init')
 
@@ -46,9 +47,20 @@ def parse_args():
 
 def run_feature(args):
     sys.path.append(os.getcwd())
-    klass = dynamic_load(args.name)
-    result = klass()
-    save_mat(args.name, result)
+    if args.all is True:
+        print(args.name)
+        mod, names = feature_functions(args.name)
+        for name in names:
+            target = "{0}.{1}".format(args.name, name)
+            l.info("Feature generation: {0}".format(target))
+            func = getattr(mod, name)
+            result = func()
+            save_mat(target, result)
+    else:
+        l.info("Feature generation: {0}".format(args.name))
+        klass = dynamic_load(args.name)
+        result = klass()
+        save_mat(args.name, result)
 
 
 def run_initialize(args):

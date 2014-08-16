@@ -11,6 +11,14 @@ import scipy.io as sio
 from sklearn.cross_validation import KFold
 
 
+def feature_functions(module_name):
+    somemodule = importlib.import_module(module_name)
+    return somemodule, [
+        name for name in somemodule.__dict__.keys()
+        if name.startswith('gen_')
+    ]
+
+
 def dynamic_load(cls_path):
     parts = cls_path.split('.')
     module_name = '.'.join(parts[:-1])
