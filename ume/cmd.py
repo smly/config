@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging as l
 import argparse
+import os
 
 from ume.utils import (
     save_mat,
@@ -19,6 +20,7 @@ def parse_args():
 
     f_parser = subparsers.add_parser('feature')
     f_parser.add_argument('-n', '--name', type=str, required=True)
+    i_parser = subparsers.add_parser('init')
 
     subparsers.add_parser('validation')
     subparsers.add_parser('prediction')
@@ -32,6 +34,15 @@ def run_feature(args):
     save_mat(args.name, result)
 
 
+def run_initialize(args):
+    pwd = os.getcwd()
+    os.makedirs(os.path.join(pwd, "data/input"))
+    os.makedirs(os.path.join(pwd, "data/output"))
+    os.makedirs(os.path.join(pwd, "data/working"))
+    os.makedirs(os.path.join(pwd, "note"))
+    os.makedirs(os.path.join(pwd, "trunk"))
+
+
 def main():
     l.basicConfig(format='%(asctime)s %(message)s', level=l.INFO)
     args = parse_args()
@@ -41,5 +52,7 @@ def main():
         pass
     elif args.subparser_name == 'feature':
         run_feature(args)
+    elif args.subparser_name == 'init':
+        run_initialize(args)
     else:
         raise RuntimeError("No such sub-command.")
