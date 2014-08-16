@@ -80,8 +80,7 @@ def load_settings(path):
     return settings
 
 
-def kfoldcv(X, y):
-    settings = load_settings("data/input/model/1.json")
+def kfoldcv(X, y, settings):
     metrics = dynamic_load(settings['metrics']['method'])
     metrics_params = settings['metrics']['params']
     kfold_params = settings['cross_validation']['params']
@@ -98,5 +97,6 @@ def kfoldcv(X, y):
         y_pred = p.solve(X_train, X_test, y_train)
 
         score = metrics(y_test, y_pred, **metrics_params)
+        l.info("Score: {0:.4f}".format(score))
         scores.append(score)
     return np.array(scores).mean(), np.array(scores).var()

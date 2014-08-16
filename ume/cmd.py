@@ -46,7 +46,6 @@ def parse_args():
 
 
 def run_feature(args):
-    sys.path.append(os.getcwd())
     if args.all is True:
         print(args.name)
         mod, names = feature_functions(args.name)
@@ -95,7 +94,8 @@ def _load_train_test(settings):
     y_train = sio.loadmat(settings['target']['file'])[
         settings['target']['name']
     ]
-    y_train = y_train[:, 0, 0]
+    #y_train = y_train[:, 0, 0]
+    y_train = y_train[:, 0]
     return X_train, X_test, y_train
 
 
@@ -104,7 +104,7 @@ def run_validation(args):
     l.info("Loading dataset")
     X, _, y = _load_train_test(settings)
     kfoldcv = dynamic_load(settings['cross_validation']['method'])
-    score, variance = kfoldcv(X, y)
+    score, variance = kfoldcv(X, y, settings)
     l.info("CV score: {0:.4f} (var: {1:.6f})".format(score, variance))
 
 
@@ -123,6 +123,7 @@ def run_prediction(args):
 
 def main():
     l.basicConfig(format='%(asctime)s %(message)s', level=l.INFO)
+    sys.path.append(os.getcwd())
     args = parse_args()
     if args.subparser_name == 'validate':
         run_validation(args)
