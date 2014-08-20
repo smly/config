@@ -74,8 +74,19 @@ def run_initialize(args):
 def _load_features(f_names):
     X = None
     for f_name in f_names:
-        X_add = sio.loadmat(f_name)['X']
-        X = X_add if X is None else ss.hstack((X, X_add))
+        l.info(f_name)
+        var_name = 'X'
+        if type(f_name) is dict:
+            var_name = f_name['name']
+            f_name = f_name['file']
+
+        X_add = sio.loadmat(f_name)[var_name]
+        if X is None:
+            X = X_add
+        elif type(X) is np.ndarray and type(X_add) is np.ndarray:
+            X = np.hstack((X, X_add))
+        else:
+            X = X_add if X is None else ss.hstack((X, X_add))
     return X
 
 
