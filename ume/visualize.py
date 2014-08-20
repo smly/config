@@ -22,6 +22,8 @@ import datetime
 import matplotlib.pylab as plt
 import matplotlib.dates as mdates
 
+from ume.utils import dynamic_load
+
 
 BASE_COLORS = [
     (55/256.0, 166/256.0, 134/256.0),
@@ -29,6 +31,10 @@ BASE_COLORS = [
     (242/256.0, 186/256.0, 82/256.0),
     (217/256.0, 118/256.0, 61/256.0),
     (217/256.0, 65/256.0, 65/256.0),
+]
+PLATE_BAR_KWARGS = [
+    'linewidth',
+    'color',
 ]
 AX_PLOT_KWARGS = [
     'linewidth',
@@ -54,6 +60,30 @@ def _select_dateformat():
     pass
 
 
+def plate_bar(ax, X, y, params):
+    plate_bar_params = {
+        k: params[k]
+        for k in params.keys() if k in PLATE_BAR_KWARGS
+    }
+    ax.bar(X, y, **plate_bar_params)
+
+
+def plate_line(ax, X, y, params):
+    ax_plot_params = {
+        k: params[k]
+        for k in params.keys() if k in AX_PLOT_KWARGS
+    }
+    ax.plot(X, y, **ax_plot_params)
+
+
+def plate_scatter(ax, X, y, params):
+    ax_plot_params = {
+        k: params[k]
+        for k in params.keys() if k in AX_PLOT_KWARGS
+    }
+    ax.plot(X, y, '.', **ax_plot_params)
+
+
 class Plot(object):
     def __init__(self, title="No title"):
         self.datastore = []
@@ -62,21 +92,13 @@ class Plot(object):
     def add(self, plot_data):
         self.datastore.append(plot_data)
 
-    def _ax_plot_with_params(self, ax, plot_params):
-        params = plot_params['params']
-        ax_plot_params = {
-            k: params[k]
-            for k in params.keys() if k in AX_PLOT_KWARGS
-        }
-        X = plot_params["X"]
-        y = plot_params["y"]
-        plot_type = plot_params.get('plot_type', 'line')
-        if plot_type == 'line':
-            ax.plot(X, y, **ax_plot_params)
-        elif plot_type == 'scatter':
-            ax.plot(X, y, '.', **ax_plot_params)
-        else:
-            raise RuntimeError("Invalid plot type")
+    def _ax_plot_with_params(self, ax, plate):
+        params = plate['params']
+        X = plate["X"]
+        y = plate["y"]
+        plot_func = plate.get('plot_func', 'line')
+        func = dynamic_load(plot_func)
+        func(ax, X, y, params)
 
     def _plot(self, idx, ax):
         plot_data_list = self.datastore[idx]

@@ -4,44 +4,50 @@
     },
     "plotdata": [
         {
+            "ax_param": {
+                "xlim": [0, 10],
+                "xlabel": "average bid price",
+                "ylabel": "average bid price",
+                "grid": "True"
+            },
             "plot": [
                 {
                     "X": "x",
                     "y": "A",
                     "source": "df",
-                    "plot_type": "line",
+                    "plot_func": "ume.visualize.plate_bar",
                     "params": {
-                        "linewidth": 0.5,
-                        "markersize": 4,
-                        "color": [0.8, 0.1, 0.1]
+                        "edgecolor": [0.2, 0.2, 0.2],
+                        "linewidth": 0.2,
+                        "color": [0.8, 0.2, 0.2]
                     }
                 },
                 {
                     "X": "x",
                     "y": "B",
                     "source": "df",
-                    "plot_type": "line",
+                    "plot_func": "ume.visualize.plate_line",
                     "params": {
                         "linewidth": 0.5,
                         "markersize": 4,
-                        "color": [0.1, 0.8, 0.1]
+                        "color": "b"
                     }
                 }
-            ],
-            "ax_param": {
-                "xlim": [0, 200],
-                "xlabel": "average bid price",
-                "ylabel": "average bid price",
-                "grid": "True"
-            }
+            ]
         },
         {
+            "ax_param": {
+                "xlim": [0, 10],
+                "xlabel": "average bid price",
+                "ylabel": "average bid price",
+                "grid": "True"
+            },
             "plot": [
                 {
                     "X": "x",
                     "y": "A",
                     "source": "df",
-                    "plot_type": "scatter",
+                    "plot_func": "ume.visualize.plate_scatter",
                     "params": {
                         "linewidth": 0.5,
                         "markersize": 4,
@@ -52,20 +58,14 @@
                     "X": "x",
                     "y": "B",
                     "source": "df",
-                    "plot_type": "scatter",
+                    "plot_func": "ume.visualize.plate_scatter",
                     "params": {
                         "linewidth": 0.5,
                         "markersize": 4,
                         "color": [0.1, 0.8, 0.1]
                     }
                 }
-            ],
-            "ax_param": {
-                "xlim": [0, 200],
-                "xlabel": "average bid price",
-                "ylabel": "average bid price",
-                "grid": "True"
-            }
+            ]
         }
     ]
 }
