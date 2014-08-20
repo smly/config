@@ -1,20 +1,18 @@
 ume
 ===
 
-My personal toolbox.
+My personal toolbox for a data mining task.
 
 Usage
 -----
 
 ```
+$ ls feature.py utils.py
+feature.py  utils.py
+
 $ ume feature -n feature -a
 $ ume validate -m data/input/model/lr_tfidf.json
 $ ume predict -m data/input/model/lr_tfidf.json -o data/working/result/lr_tfidf.csv
-
-$ ls feature.py utils.py
-feature.py  utils.py
-$ cat requirements.txt
-https://github.com/smly/ume/archive/1.4.zip
 $ cat data/input/model/lr_tfidf.json
 {
     "model": {
@@ -55,4 +53,25 @@ $ cat data/input/model/lr_tfidf.json
         }
     }
 }
+```
+
+Bootstrapping
+-------------
+
+Set up a virtual environment for ume:
+
+```
+$ pwd
+/home/smly/workspace/ume
+$ ./bootstrap
+(snip)
+$ source venv/bin/active
+$ which python
+/home/smly/workspace/ume/venv/bin/python
+$ which pip
+/home/smly/workspace/ume/venv/bin/pip
+$ pip install https://github.com/smly/ume/archive/1.5.1.zip
+$ source venv/bin/active
+$ which ume
+/home/smly/workspace/ume/venv/bin/ume
 ```

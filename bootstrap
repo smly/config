@@ -5,15 +5,18 @@
 # * https://pypi.python.org/pypi/scipy
 # * https://pypi.python.org/pypi/pandas
 # * https://pypi.python.org/pypi/matplotlib
+# * https://pypi.python.org/pypi/scikit-learn
 # * https://github.com/numpy/numpy/tags
 # * https://github.com/scipy/scipy/tags
 # * https://github.com/pydata/pandas/tags
 # * https://github.com/matplotlib/matplotlib/tags
+# * https://github.com/scikit-learn/scikit-learn/tags
 
 NUMPY="1.8.2"
 SCIPY="0.14.0"
 PANDAS="0.14.1"
 MATPLOTLIB="1.3.1"
+SKLEARN="0.15.1"
 
 DST=`pwd`"/build/.local"
 
@@ -36,3 +39,4 @@ source venv/bin/activate
 [ $? -eq 0 ] && pip install scipy==${SCIPY}
 [ $? -eq 0 ] && pip install pandas==${PANDAS}
 [ $? -eq 0 ] && pip install matplotlib==${MATPLOTLIB}
+[ $? -eq 0 ] && pip install scikit-learn==${SKLEARN}
