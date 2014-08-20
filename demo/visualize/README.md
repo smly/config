@@ -1,5 +1,5 @@
 ```
-$ ls ./sample.*
+$ ls ./timeseries.csv ./sample.csv ./sample.json
 ./sample.csv  ./sample.json
 
 $ ume visualize --json ./sample.json --output ./result.png

@@ -70,7 +70,7 @@ $ which python
 /home/smly/workspace/ume/venv/bin/python
 $ which pip
 /home/smly/workspace/ume/venv/bin/pip
-$ pip install https://github.com/smly/ume/archive/1.5.1.zip
+$ pip install https://github.com/smly/ume/archive/1.5.2.zip
 $ source venv/bin/active
 $ which ume
 /home/smly/workspace/ume/venv/bin/ume
