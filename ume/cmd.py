@@ -3,6 +3,7 @@ import logging as l
 import argparse
 import os
 import sys
+import json
 
 import numpy as np
 import scipy.sparse as ss
@@ -10,6 +11,7 @@ import scipy.io as sio
 import pandas as pd
 
 from ume.utils import feature_functions, save_mat, dynamic_load, load_settings
+from ume.visualize import Plot
 
 
 def parse_args():
@@ -24,25 +26,53 @@ def parse_args():
     f_parser = subparsers.add_parser('feature')
     f_parser.add_argument('-a', '--all', action='store_true', default=False)
     f_parser.add_argument('-n', '--name', type=str, required=True)
-    i_parser = subparsers.add_parser('init')
+
+    subparsers.add_parser('init')
 
     v_parser = subparsers.add_parser('validate')
-    v_parser.add_argument('-m', '--model',
+    v_parser.add_argument(
+        '-m', '--model',
         required=True,
         type=str,
         help='model description file described by json format')
 
+    z_parser = subparsers.add_parser('visualize')
+    z_parser.add_argument('-j', '--json', type=str, required=True)
+    z_parser.add_argument('-o', '--output', type=str, required=True)
+
     p_parser = subparsers.add_parser('predict')
-    p_parser.add_argument('-m', '--model',
+    p_parser.add_argument(
+        '-m', '--model',
         required=True,
         type=str,
         help='model description file described by json format')
-    p_parser.add_argument('-o', '--output',
+    p_parser.add_argument(
+        '-o', '--output',
         required=True,
         type=str,
         help='output file')
 
     return p.parse_args()
+
+
+def run_visualization(args):
+    with open(args.json, 'r') as f:
+        config = json.load(f)
+
+    p = Plot()
+    data_dict = {}
+    for source_name in config['datasource'].keys():
+        data_dict[source_name] = pd.read_csv(config['datasource'][source_name])
+    for i, plotdata in enumerate(config['plotdata']):
+        for j, plate in enumerate(plotdata['plot']):
+            plate_source = data_dict[plate['source']]
+            for ax_name in ['X', 'y']:
+                col = plate[ax_name]
+                config['plotdata'][i]['plot'][j][ax_name] = plate_source[col]
+
+    for c in config['plotdata']:
+        p.add(c)
+    p.save(args.output)
 
 
 def run_feature(args):
@@ -138,6 +168,8 @@ def main():
     args = parse_args()
     if args.subparser_name == 'validate':
         run_validation(args)
+    if args.subparser_name == 'visualize':
+        run_visualization(args)
     elif args.subparser_name == 'predict':
         run_prediction(args)
     elif args.subparser_name == 'feature':
