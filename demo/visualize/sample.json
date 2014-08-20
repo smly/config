@@ -1,8 +1,28 @@
 {
     "datasource": {
+        "timeseries": "./timeseries.csv",
         "df": "./sample.csv"
     },
     "plotdata": [
+        {
+            "ax_param": {
+                "dateformat": "%Y-%m-%d",
+                "xticks_rotation": "20"
+            },
+            "plot": [
+                {
+                    "X": "date",
+                    "y": "val",
+                    "source": "timeseries",
+                    "plot_func": "ume.visualize.plate_timeseries",
+                    "params": {
+                        "color": [0.2, 0.6, 0.5],
+                        "linewidth": 0.5,
+                        "dateformat": "%Y-%m-%d"
+                    }
+                }
+            ]
+        },
         {
             "ax_param": {
                 "xlim": [0, 10],

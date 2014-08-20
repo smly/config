@@ -32,6 +32,10 @@ BASE_COLORS = [
     (217/256.0, 118/256.0, 61/256.0),
     (217/256.0, 65/256.0, 65/256.0),
 ]
+PLATE_TS_KWARGS = [
+    'color',
+    'linewidth',
+]
 PLATE_BAR_KWARGS = [
     'linewidth',
     'color',
@@ -51,13 +55,18 @@ def _change_tick_fontsize(ax, size):
         tl.set_fontsize(size)
 
 
-def _transform_date(l):
-    #return [datetime.datetime.strptime("-".join(x.split('-')[:2]), '%Y-%m') for x in l]
-    return [datetime.datetime.strptime(x, '%Y-%m-%d') for x in l]
+def _transform_date(l, fmt="%Y-%m-%d"):
+    return [datetime.datetime.strptime(x, fmt) for x in l]
 
 
-def _select_dateformat():
-    pass
+def plate_timeseries(ax, X, y, params):
+    plate_timeseries_params = {
+        k: params[k]
+        for k in params.keys() if k in PLATE_TS_KWARGS
+    }
+    tr_param = {'fmt': params['dateformat']} if 'dateformat' in params else {}
+    datelist = _transform_date(X, **tr_param)
+    ax.plot(datelist, y, **plate_timeseries_params)
 
 
 def plate_bar(ax, X, y, params):
@@ -128,6 +137,12 @@ class Plot(object):
                 ax.grid(color=(200/256.0, 200/256.0, 200/256.0),
                         linestyle=':',
                         linewidth=0.5)
+            if 'dateformat' in params:
+                plt.gcf().axes[idx].xaxis.set_major_formatter(
+                    mdates.DateFormatter('%Y-%m-%d'))
+            if 'xticks_rotation' in params:
+                plt.xticks(rotation=params['xticks_rotation'])
+
             _change_tick_fontsize(ax, 8)
 
         else:
@@ -154,54 +169,6 @@ class Plot(object):
 
         #plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
         plt.tight_layout()
-        plt.savefig(plot_filename)
-
-        return self
-
-
-class TimeSeriesPlot(object):
-    def __init__(self):
-        self.datastore = []
-        self.dateformat = []  # TODO
-
-    def add(self, X, y):
-        self.datastore.append((X, y))
-        return self
-
-    def _plot(self, plot_data, plot_param, ax, idx):
-        color_sz = len(BASE_COLORS)
-        color_idx = idx % color_sz
-        plot_param.update({'color': BASE_COLORS[color_idx]})
-
-        _change_tick_fontsize(ax, 8)
-        date_list = _transform_date(plot_data[0])
-        ax.plot(date_list, plot_data[1], **plot_param)
-        plt.gcf().axes[idx].xaxis.set_major_formatter(
-            mdates.DateFormatter('%Y-%m-%d'))
-
-    def save(self, plot_filename, title='hoge', max_col=2):
-        fig = plt.figure()
-        fig.suptitle(title, fontsize=8)
-        plot_param = {
-            'linewidth': 0.5,
-            'color': BASE_COLORS[0],
-        }
-
-        if len(self.datastore) <= max_col:
-            colsz = len(self.datastore)
-            rowsz = 1
-            for i, d in enumerate(self.datastore):
-                ax = fig.add_subplot(rowsz, colsz, i + 1)
-                self._plot(d, plot_param, ax)
-        else:
-            sz = len(self.datastore)
-            colsz = max_col
-            rowsz = sz / max_col
-            rowsz = rowsz if sz % max_col == 0 else rowsz + 1
-            for i, d in enumerate(self.datastore):
-                ax = fig.add_subplot(rowsz, colsz, i + 1)
-                self._plot(d, plot_param, ax, i)
-
         plt.savefig(plot_filename)
 
         return self
