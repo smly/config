@@ -1,10 +1,39 @@
 UME
 ===
 
-My personal toolbox for a data mining task.
+My personal framework/toolbox for a data mining task.
 
 This application's main goal is to provide a framework that is able to increase
 reproducibility and productivity for a data mining competition on kaggle.com.
+
+Bootstrapping
+-------------
+
+UME requires very strict dependencies, so setting up a new virtual environment for UME is recommended:
+
+```
+$ pwd
+/home/smly/workspace/ume
+$ ./bootstrap
+(snip)
+$ source venv/bin/active
+$ which python
+/home/smly/workspace/ume/venv/bin/python
+$ which pip
+/home/smly/workspace/ume/venv/bin/pip
+$ pip install https://github.com/smly/ume/archive/1.5.2.zip
+$ source venv/bin/active
+$ which ume
+/home/smly/workspace/ume/venv/bin/ume
+```
+
+UME v1.5.2 strictly requires following versions:
+
+* Python 3.4.1
+* numpy 1.8.2
+* scipy 0.14.0
+* pandas 0.14.1
+* scikit-learn==0.15.1
 
 Usage
 -----
@@ -56,25 +85,4 @@ $ cat data/input/model/lr_tfidf.json
         }
     }
 }
-```
-
-Bootstrapping
--------------
-
-UME requires very strict dependencies, so setting up a new virtual environment for UME is recommended.
-
-```
-$ pwd
-/home/smly/workspace/ume
-$ ./bootstrap
-(snip)
-$ source venv/bin/active
-$ which python
-/home/smly/workspace/ume/venv/bin/python
-$ which pip
-/home/smly/workspace/ume/venv/bin/pip
-$ pip install https://github.com/smly/ume/archive/1.5.2.zip
-$ source venv/bin/active
-$ which ume
-/home/smly/workspace/ume/venv/bin/ume
 ```
