@@ -1,10 +1,10 @@
-ume
+UME
 ===
 
 My personal toolbox for a data mining task.
 
 This application's main goal is to provide a framework that is able to increase
-reproducibility and productivity for a data mining competition on kaggle.
+reproducibility and productivity for a data mining competition on kaggle.com.
 
 Usage
 -----
@@ -61,7 +61,7 @@ $ cat data/input/model/lr_tfidf.json
 Bootstrapping
 -------------
 
-Set up a virtual environment for ume:
+UME requires very strict dependencies, so setting up a new virtual environment for UME is recommended.
 
 ```
 $ pwd
