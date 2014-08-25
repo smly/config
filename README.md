@@ -3,6 +3,9 @@ ume
 
 My personal toolbox for a data mining task.
 
+This application's main goal is to provide a framework that is able to increase
+reproducibility and productivity for a data mining competition on kaggle.
+
 Usage
 -----
 
