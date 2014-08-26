@@ -27,13 +27,14 @@ $ which ume
 /home/smly/workspace/ume/venv/bin/ume
 ```
 
-UME v1.5.2 strictly requires following versions:
+UME v1.5.3 strictly requires following versions:
 
 * Python 3.4.1
 * numpy 1.8.2
 * scipy 0.14.0
 * pandas 0.14.1
-* scikit-learn==0.15.1
+* matplotlib 0.14.0
+* scikit-learn 0.15.1
 
 Usage
 -----
