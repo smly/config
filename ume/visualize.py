@@ -36,6 +36,9 @@ PLATE_TS_KWARGS = [
     'color',
     'linewidth',
 ]
+PLATE_HIST_KWARGS = [
+    'color',
+]
 PLATE_BAR_KWARGS = [
     'linewidth',
     'color',
@@ -67,6 +70,14 @@ def plate_timeseries(ax, X, y, params):
     tr_param = {'fmt': params['dateformat']} if 'dateformat' in params else {}
     datelist = _transform_date(X, **tr_param)
     ax.plot(datelist, y, **plate_timeseries_params)
+
+
+def plate_hist(ax, X, params):
+    plate_hist_params = {
+        k: params[k]
+        for k in params.keys() if k in PLATE_HIST_KWARGS
+    }
+    ax.hist(X, **plate_hist_params)
 
 
 def plate_bar(ax, X, y, params):
