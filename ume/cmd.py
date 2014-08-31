@@ -59,16 +59,25 @@ def run_visualization(args):
     with open(args.json, 'r') as f:
         config = json.load(f)
 
-    p = Plot()
+    title_name = config['title'] if 'title' in config else ""
+    p = Plot(title=title_name)
     data_dict = {}
     for source_name in config['datasource'].keys():
         data_dict[source_name] = pd.read_csv(config['datasource'][source_name])
+
     for i, plotdata in enumerate(config['plotdata']):
+        if 'plot' not in plotdata:
+            continue  # empty space
+
         for j, plate in enumerate(plotdata['plot']):
             plate_source = data_dict[plate['source']]
             for ax_name in ['X', 'y']:
-                col = plate[ax_name]
-                config['plotdata'][i]['plot'][j][ax_name] = plate_source[col]
+                if ax_name == 'y' and ax_name not in plate:
+                    # plate_hist doesn't require y-axis.
+                    config['plotdata'][i]['plot'][j][ax_name] = None
+                else:
+                    col = plate[ax_name]
+                    config['plotdata'][i]['plot'][j][ax_name] = plate_source[col]
 
     for c in config['plotdata']:
         p.add(c)
@@ -95,7 +104,9 @@ def run_feature(args):
 def run_initialize(args):
     pwd = os.getcwd()
     os.makedirs(os.path.join(pwd, "data/input/model"))
+    os.makedirs(os.path.join(pwd, "data/input/visualize"))
     os.makedirs(os.path.join(pwd, "data/output"))
+    os.makedirs(os.path.join(pwd, "data/output/visualize"))
     os.makedirs(os.path.join(pwd, "data/working"))
     os.makedirs(os.path.join(pwd, "note"))
     os.makedirs(os.path.join(pwd, "trunk"))

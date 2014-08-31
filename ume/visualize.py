@@ -37,6 +37,7 @@ PLATE_TS_KWARGS = [
     'linewidth',
 ]
 PLATE_HIST_KWARGS = [
+    'bins',
     'color',
 ]
 PLATE_BAR_KWARGS = [
@@ -72,7 +73,7 @@ def plate_timeseries(ax, X, y, params):
     ax.plot(datelist, y, **plate_timeseries_params)
 
 
-def plate_hist(ax, X, params):
+def plate_hist(ax, X, y, params):
     plate_hist_params = {
         k: params[k]
         for k in params.keys() if k in PLATE_HIST_KWARGS
@@ -113,7 +114,7 @@ class Plot(object):
         self.datastore.append(plot_data)
 
     def _ax_plot_with_params(self, ax, plate):
-        params = plate['params']
+        params = {} if 'params' not in plate else plate['params']
         X = plate["X"]
         y = plate["y"]
         plot_func = plate.get('plot_func', 'line')
@@ -123,7 +124,7 @@ class Plot(object):
     def _plot(self, idx, ax):
         plot_data_list = self.datastore[idx]
 
-        if type(plot_data_list) is dict:
+        if type(plot_data_list) is dict and 'plot' in plot_data_list:
             for plot_data in plot_data_list['plot']:
                 self._ax_plot_with_params(ax, plot_data)
             # ax change
@@ -156,6 +157,8 @@ class Plot(object):
 
             _change_tick_fontsize(ax, 8)
 
+        elif 'plot' not in plot_data_list:
+            pass  # empty space
         else:
             raise RuntimeError("Plot#add is required list parameter'")
 
@@ -167,6 +170,8 @@ class Plot(object):
             colsz = len(self.datastore)
             rowsz = 1
             for i, d in enumerate(self.datastore):
+                if len(d) == 0:
+                    continue  # empty space
                 ax = fig.add_subplot(rowsz, colsz, i + 1)
                 self._plot(i, ax)
         else:
@@ -175,6 +180,8 @@ class Plot(object):
             rowsz = sz / max_col
             rowsz = rowsz if sz % max_col == 0 else rowsz + 1
             for i, d in enumerate(self.datastore):
+                if len(d) == 0:
+                    continue  # empty space
                 ax = fig.add_subplot(rowsz, colsz, i + 1)
                 self._plot(i, ax)
 
