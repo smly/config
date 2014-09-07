@@ -75,7 +75,7 @@ class PredictProba(object):
 
 def load_settings(path):
     if path.endswith(".jsonnet"):
-        settings = json.load(jsonnet.load(path))
+        settings = json.loads(jsonnet.load(path).decode())
     else:
         with open(path, 'r') as f:
             settings = json.load(f)

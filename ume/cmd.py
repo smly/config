@@ -58,7 +58,7 @@ def parse_args():
 
 def run_visualization(args):
     if args.json.endswith(".jsonnet"):
-        config = json.load(jsonnet.load(args.json))
+        config = json.loads(jsonnet.load(args.json).decode())
     else:
         with open(args.json, 'r') as f:
             config = json.load(f)
