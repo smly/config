@@ -87,3 +87,9 @@ $ cat data/input/model/lr_tfidf.json
     }
 }
 ```
+
+Documentation
+-------------
+
+I have no plan to describe how to use UME in details.
+If you are interested in it, plase send me pull request =)

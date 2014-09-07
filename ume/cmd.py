@@ -79,9 +79,11 @@ def run_visualization(args):
                     col = plate[ax_name]
                     config['plotdata'][i]['plot'][j][ax_name] = plate_source[col]
 
+    layout_param = {} if 'layout' not in config else config['layout']
+
     for c in config['plotdata']:
         p.add(c)
-    p.save(args.output)
+    p.save(args.output, **layout_param)
 
 
 def run_feature(args):
@@ -173,13 +175,17 @@ def run_prediction(args):
     pd.DataFrame({'y_pred': y_pred}).to_csv(args.output, index=False)
 
 
+def run_version_checker(args):
+    pass
+
+
 def main():
     l.basicConfig(format='%(asctime)s %(message)s', level=l.INFO)
     sys.path.append(os.getcwd())
     args = parse_args()
     if args.subparser_name == 'validate':
         run_validation(args)
-    if args.subparser_name == 'visualize':
+    elif args.subparser_name == 'visualize':
         run_visualization(args)
     elif args.subparser_name == 'predict':
         run_prediction(args)
@@ -187,5 +193,7 @@ def main():
         run_feature(args)
     elif args.subparser_name == 'init':
         run_initialize(args)
+    elif args.subparser_name == 'version':
+        run_version_checker(args)
     else:
         raise RuntimeError("No such sub-command.")
