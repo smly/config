@@ -9,6 +9,7 @@ import numpy as np
 import scipy.sparse as ss
 import scipy.io as sio
 import pandas as pd
+import jsonnet
 
 from ume.utils import feature_functions, save_mat, dynamic_load, load_settings
 from ume.visualize import Plot
@@ -56,8 +57,11 @@ def parse_args():
 
 
 def run_visualization(args):
-    with open(args.json, 'r') as f:
-        config = json.load(f)
+    if args.json.endswith(".jsonnet"):
+        config = json.load(jsonnet.load(args.json))
+    else:
+        with open(args.json, 'r') as f:
+            config = json.load(f)
 
     title_name = config['title'] if 'title' in config else ""
     p = Plot(title=title_name)

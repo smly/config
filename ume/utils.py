@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import logging as l
 import importlib
-import sys
 import os
-import warnings
 import json
 
+import jsonnet
 import numpy as np
 import scipy.io as sio
 from sklearn.cross_validation import KFold, ShuffleSplit, LeaveOneOut
+
 
 def feature_functions(module_name):
     somemodule = importlib.import_module(module_name)
@@ -74,8 +74,12 @@ class PredictProba(object):
 
 
 def load_settings(path):
-    with open(path, 'r') as f:
-        settings = json.load(f)
+    if path.endswith(".jsonnet"):
+        settings = json.load(jsonnet.load(path))
+    else:
+        with open(path, 'r') as f:
+            settings = json.load(f)
+
     return settings
 
 

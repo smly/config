@@ -35,6 +35,9 @@ UME v1.5.4 strictly requires following versions:
 * pandas 0.14.1
 * matplotlib 0.14.0
 * scikit-learn 0.15.1
+* Cython
+* jsonnet 0.0.1
+
 
 Usage
 -----
