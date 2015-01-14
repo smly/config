@@ -5,6 +5,7 @@
 import XMonad
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
@@ -27,6 +28,7 @@ import System.IO
 myManageHook = composeAll
     [ className =? "Gimp"      --> doFloat
     , className =? "Vncviewer" --> doFloat
+    , className =? "Display.im6" --> doCenterFloat
     , className =? "Dev" --> doFloat -- for development
     , className =? "MPlayer"   --> doFloat
     ]
