@@ -26,4 +26,3 @@ fi
 # customize
 [ -e ~/.zsh/machine.zsh ] && . ~/.zsh/machine.zsh
 #[ -e ~/.zsh/start.zsh   ] && . ~/.zsh/start.zsh
-

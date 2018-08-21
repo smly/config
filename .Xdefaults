@@ -7,8 +7,8 @@ Rxvt.background: #222222
 Rxvt.foreground: white
 Rxvt.tintColor: gray70
 
-urxvt.font: xft:Ricty Discord:size=10:style=normal
-urxvt.boldFont: xft:Ricty Discord:size=10:style=bold
+urxvt.font: xft:Ricty Discord:size=9:style=normal
+urxvt.boldFont: xft:Ricty Discord:size=9:style=bold
 urxvt.transparent: false
 
 urxvt*color0: #1B1D1E

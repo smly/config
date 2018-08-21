@@ -28,7 +28,7 @@ export LANG="ja"
 
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/pgsql/lib
 
-
+export KEYTIMEOUT=1
 
 #########################
 ######################### EXTRA

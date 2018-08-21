@@ -31,8 +31,17 @@ case $HOSTNAME in
         PATH=$PATH:/opt/java/bin
         export PATH
         ;;
-    sage)
-        ;;
+    resona)
+        export XDG_CONFIG_HOME=~/.config
+        export PATH="/home/marzio/anaconda3/bin:$PATH"
+        export PATH=/usr/local/cuda/bin:$PATH
+        export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+        alias vim=nvim
+
+	export LANGUAGE="ja"
+	export LC_ALL="ja_JP.UTF-8"
+	export LANG="ja"
+	;;
     shapiro)
         export HADOOP_HOME=/usr/local/hadoop
         PATH=~/.gem/ruby/1.8/bin:$HADOOP_HOME/bin:$PATH
