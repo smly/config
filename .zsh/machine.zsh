@@ -59,6 +59,9 @@ case $HOSTNAME in
         ;;
     hofmann)
         ;;
+    dmitry)
+        PATH=$PATH:$HOME/anaconda3/bin
+        ;;
     chung)
         ;;
     sussman)
