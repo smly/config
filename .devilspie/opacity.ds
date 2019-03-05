@@ -1,0 +1,2 @@
+(if (contains (window_class) "URxvt")
+    (begin (spawn_async (str "transset -i " (window_xid) " 0.7" ))))
