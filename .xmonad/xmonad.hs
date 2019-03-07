@@ -28,6 +28,7 @@ import System.IO
 myManageHook = composeAll
     [ className =? "Gimp"      --> doFloat
     , className =? "Vncviewer" --> doFloat
+    , className =? "Display" --> doCenterFloat
     , className =? "Display.im6" --> doCenterFloat
     , className =? "Dev" --> doFloat -- for development
     , className =? "MPlayer"   --> doFloat
@@ -37,7 +38,7 @@ main = do
 {-
     spawn "xlock -mode demon" -- lock desktop first!
 -}
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/smly/.xmobarrc"
+    -- xmproc <- spawnPipe "/usr/bin/xmobar /home/smly/.xmobarrc"
     xmonad $ defaultConfig
         { manageHook = manageDocks <+> myManageHook
                         <+> manageHook defaultConfig
@@ -48,11 +49,13 @@ main = do
                        smartBorders (
 --                                     onWorkspace "dev1" grids $
                                      onWorkspace "web4" mostlyTall standardLayouts)
+        {-
         , logHook = dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppCurrent = xmobarColor "#eeee00" "" . wrap "<" ">"
                         , ppTitle = xmobarColor "#eeee00" "" . shorten 50
                         }
+        -}
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         , terminal = "urxvt"
         , focusFollowsMouse = False

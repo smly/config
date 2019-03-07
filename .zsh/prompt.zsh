@@ -42,20 +42,16 @@ function _git_compute_vars() {
         state=":$state"
     fi
 
-    case $git_dir in 
+    case $git_dir in
         .git) git_dir="$(pwd)/.git";;
-    esac 
+    esac
 
-    export __ZSH_GIT_STATE="%{$bg[green]%}%{$fg[black]%} ${branch}${state} %{$reset_color%}"
+    export __ZSH_GIT_STATE="%{$fg[red]%}${branch}${state}/%{$reset_color%}"
     export __ZSH_GIT_DIR="${${git_dir:h}/$HOME/~}"
 }
 
 function _prompt_compute_vars() {
     _git_compute_vars
-
-    local pdate
-    pdate=$(date +"%m/%d %H:%M")
-    export __ZSH_RPROMPT_DATE="$pdate"
 
     local git_dir
     git_dir=${${__ZSH_GIT_DIR}%% }
@@ -76,7 +72,7 @@ function _prompt_compute_vars() {
 }
 
 function _git_preexec_update_vars() {
-    case "$(history $HISTCMD)" in 
+    case "$(history $HISTCMD)" in
         *git*) _git_compute_vars ;;
     esac
 }
@@ -92,17 +88,18 @@ _prompt_compute_vars
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
 # Background color codes:
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
-PROMPT='%{$reset_color%} '
-
+PROMPT='%{$reset_color%}'
 PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
 PROMPT=$PROMPT'%{$fg[yellow]%}['       # [
 PROMPT=$PROMPT'${__ZSH_RPROMPT_DIR}'   # rprompt_dir (git dir)
 PROMPT=$PROMPT'%{$fg[red]%}:%!'        # # of history
 PROMPT=$PROMPT'%{$fg[yellow]%}]'       # ]
-PROMPT=$PROMPT'%{$fg[white]%}(${__ZSH_RPROMPT_DATE})'  # date
 
-if [[ $HOSTNAME = "sage" ]]; then
-  PROMPT=$PROMPT'%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
+if [[ $HOSTNAME = "resona" ]]; then
+  PROMPT='%{$reset_color%}'
+  PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
+  PROMPT=$PROMPT'%{$fg[green]%}${HOSTNAME}'
+  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}$'   # rprompt_dir (git dir)
 elif [[ $VENDOR = "apple" ]]; then
   PROMPT=$PROMPT'%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
 elif [[ $HOSTNAME = "hofmann" ]]; then
