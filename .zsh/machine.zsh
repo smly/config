@@ -51,5 +51,8 @@ case $HOSTNAME in
         export LC_ALL="ja_JP.UTF-8"
         export LANG="ja"
 	;;
+    sander)
+        export IS_LOCAL=`drill gov.x6 | grep ns.gov.x6`
+	;;
 esac
 export SCREENRC
