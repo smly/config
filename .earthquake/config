@@ -1,5 +1,0 @@
-path = "#{Dir.home}/.earthquake"
-token, secret = open("#{path}/secret", 'r').read.split(/\n/)
-
-Earthquake.config[:token], Earthquake.config[:secret] = token, secret
-Earthquake.config[:expand_url] = true
