@@ -35,7 +35,7 @@ export KEYTIMEOUT=1
 
 # bindkey
 bindkey "^[f" vi-forward-word
-bindkey "^[b" vi-backward-word 
+bindkey "^[b" vi-backward-word
 
 ## replace-string
 autoload -U replace-string

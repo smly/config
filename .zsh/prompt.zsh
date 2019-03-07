@@ -95,10 +95,15 @@ PROMPT=$PROMPT'${__ZSH_RPROMPT_DIR}'   # rprompt_dir (git dir)
 PROMPT=$PROMPT'%{$fg[red]%}:%!'        # # of history
 PROMPT=$PROMPT'%{$fg[yellow]%}]'       # ]
 
+HOST_PROMPT='%{$fg[green]%}${HOSTNAME}'
+if [[ -n "$IS_LOCAL" ]]; then
+  HOST_PROMPT='%{$fg[blue]%}${HOSTNAME}'
+fi
+
 if [[ $HOSTNAME = "resona" ]]; then
   PROMPT='%{$reset_color%}'
   PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
-  PROMPT=$PROMPT'%{$fg[green]%}${HOSTNAME}'
+  PROMPT=${PROMPT}${HOST_PROMPT}
   PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}$'   # rprompt_dir (git dir)
 elif [[ $VENDOR = "apple" ]]; then
   PROMPT=$PROMPT'%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
