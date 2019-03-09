@@ -7,7 +7,10 @@ fi
 
 [ -e ~/.zsh/config.zsh        ] && . ~/.zsh/config.zsh
 [ -e ~/.zsh/path.zsh          ] && . ~/.zsh/path.zsh
-#. ~/.zsh/server.zsh
+
+# customize
+[ -e ~/.zsh/machine.zsh ] && . ~/.zsh/machine.zsh
+
 [ -e ~/.zsh/prompt.zsh        ] && . ~/.zsh/prompt.zsh
 [ -e ~/.zsh/abbreviations.zsh ] && . ~/.zsh/abbreviations.zsh
 [ -e ~/.zsh/hash.zsh          ] && . ~/.zsh/hash.zsh
@@ -17,12 +20,5 @@ fi
 [ -e ~/.zsh/globalaliases.zsh ] && . ~/.zsh/globalaliases.zsh
 [ -e ~/.zsh/completion.zsh    ] && . ~/.zsh/completion.zsh
 
-# perl
-[ -e ~/perl5/perlbrew/etc/bashrc ] && . ~/perl5/perlbrew/etc/bashrc
-
 # ccache
 [ -f ~/.ccacherc        ] && . ~/.ccacherc
-
-# customize
-[ -e ~/.zsh/machine.zsh ] && . ~/.zsh/machine.zsh
-#[ -e ~/.zsh/start.zsh   ] && . ~/.zsh/start.zsh
