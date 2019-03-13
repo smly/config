@@ -10,7 +10,7 @@ case $HOSTNAME in
         export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
         alias vim=nvim
-        alias emacs=nvim  # ;-)
+        alias emacs=nvim
 
         export LANGUAGE="ja"
         export LC_ALL="ja_JP.UTF-8"
@@ -54,5 +54,14 @@ case $HOSTNAME in
     sander)
         export IS_LOCAL=`drill gov.x6 | grep ns.gov.x6`
 	;;
+    ramstein)
+        export IS_LOCAL=`dig gov.x6 | grep ns.gov.x6`
+	;;
+    x1)
+        export PATH=$HOME/anaconda/bin:$PATH
+        export IS_LOCAL=`dig gov.x6 | grep ns.gov.x6`
+
+        alias vim=nvim
+    ;;
 esac
 export SCREENRC

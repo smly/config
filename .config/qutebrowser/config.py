@@ -15,7 +15,7 @@ c.zoom.default = '125%'
 
 config.bind('P', 'open -t {clipboard}')
 config.bind('p', 'open {clipboard}')
-config.bind('o', 'set-cmd-text -s :open -t')
+config.bind('o', 'set-cmd-text -s :open')
 
 config.bind('<Alt+Left>', 'back')
 config.bind('<Alt+Right>', 'forward')
