@@ -5,8 +5,8 @@ alias tmux="TERM=screen-256color-bce tmux"
 case $HOSTNAME in
     resona)
         export XDG_CONFIG_HOME=~/.config
-        export PATH=$HOME/anaconda3/bin:$PATH
         export PATH=$HOME/local/bin:/usr/local/cuda/bin:$PATH
+        export PATH=$HOME/anaconda3/bin:$HOME/.npm_global/bin:$PATH
         export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
         alias vim=nvim
@@ -16,6 +16,16 @@ case $HOSTNAME in
         export LC_ALL="ja_JP.UTF-8"
         export LANG="ja"
 
+        export IS_LOCAL=`dig gov.x6 | grep ns.gov.x6`
+	;;
+    nephren)
+        export PATH=$HOME/anaconda3/bin:$HOME/.npm_global/bin:$PATH
+        export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+        alias vim=nvim
+
+        export LANGUAGE="ja"
+        export LC_ALL="ja_JP.UTF-8"
+        export LANG="ja"
         export IS_LOCAL=`dig gov.x6 | grep ns.gov.x6`
 	;;
     merill)
