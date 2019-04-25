@@ -22,7 +22,7 @@ config.bind('<Alt+Right>', 'forward')
 config.bind('<Backspace>', 'back')
 
 config.bind('<Ctrl+f>', 'scroll-page 0 0.5')
-config.bind('<Ctrl+r>', 'restart')
+config.bind('<Ctrl+r>', 'reload')
 config.bind('<Shift+Backspace>', 'forward')
 config.bind('<Shift+Space>', 'scroll-page 0 -0.5')
 
