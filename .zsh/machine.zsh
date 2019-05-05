@@ -70,8 +70,10 @@ case $HOSTNAME in
     x1)
         export PATH=$HOME/anaconda/bin:$PATH
         export IS_LOCAL=`dig gov.x6 | grep ns.gov.x6`
+        export IS_SA=`ssh-add -l 2>&1 | grep "4096 SHA256:ZxNA"`
 
         alias vim=nvim
+        alias sa='eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_rsa.github_20171017; exec zsh'
     ;;
 esac
 export SCREENRC

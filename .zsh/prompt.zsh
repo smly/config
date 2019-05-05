@@ -104,23 +104,29 @@ if [[ $HOSTNAME = "resona" ]]; then
   PROMPT='%{$reset_color%}'
   PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
   PROMPT=${PROMPT}${HOST_PROMPT}
-  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}$'   # rprompt_dir (git dir)
+  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}'   # rprompt_dir (git dir)
 elif [[ $HOSTNAME = "nephren" ]]; then
   PROMPT='%{$reset_color%}'
   PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
   PROMPT=${PROMPT}${HOST_PROMPT}
-  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}$'   # rprompt_dir (git dir)
+  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}'   # rprompt_dir (git dir)
 elif [[ $HOSTNAME = "x1" ]]; then
   PROMPT='%{$reset_color%}'
   PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
   PROMPT=${PROMPT}${HOST_PROMPT}
-  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}$'   # rprompt_dir (git dir)
+  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}'   # rprompt_dir (git dir)
 elif [[ $VENDOR = "apple" ]]; then
-  PROMPT=$PROMPT'%{$fg[green]%}${WINDOW:+"$WINDOW"}$'
+  PROMPT=$PROMPT'%{$fg[green]%}${WINDOW:+"$WINDOW"}'
 elif [[ $HOSTNAME = "hofmann" ]]; then
-  PROMPT=$PROMPT'%{$fg[red]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
+  PROMPT=$PROMPT'%{$fg[red]%}${HOSTNAME}${WINDOW:+"$WINDOW"}'
 else
-  PROMPT=$PROMPT'%{$fg[green]%}${HOSTNAME}${WINDOW:+"$WINDOW"}$'
+  PROMPT=$PROMPT'%{$fg[green]%}${HOSTNAME}${WINDOW:+"$WINDOW"}'
+fi
+
+if [[ -n "$IS_SA" ]]; then
+  PROMPT=$PROMPT'%{$fg[red]%}$'
+else
+  PROMPT=$PROMPT'$'
 fi
 
 PROMPT=$PROMPT'%{$reset_color%} '
