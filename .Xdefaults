@@ -7,23 +7,22 @@ Rxvt.background: #222222
 Rxvt.foreground: white
 Rxvt.tintColor: gray70
 
-urxvt.font: xft:Ricty Discord:size=8:style=normal
-urxvt.boldFont: xft:Ricty Discord:size=8:style=bold
-# urxvt.transparent: false
+urxvt.font: xft:Ricty Discord:size=9:style=normal
+urxvt.boldFont: xft:Ricty Discord:size=9:style=bold
 urxvt.transparent: true
 
-urxvt*color0: #1B1D1E
-urxvt*color1: #F92672
-urxvt*color9: #FF669D
-urxvt*color2: #A6E22E
-urxvt*color10: #BEED5F
-urxvt*color3: #FD971F
-urxvt*color11: #E6DB74
-urxvt*color4: #66D9EF
-urxvt*color12: #66D9EF
-urxvt*color5: #9E6FFE
-urxvt*color13: #9E6FFE
-urxvt*color6: #5E7175
-urxvt*color14: #A3BABF
-urxvt*color7: #CCCCC6
-urxvt*color15: #F8F8F2
+# urxvt*color0: #1B1D1E
+# urxvt*color1: #F92672
+# urxvt*color9: #FF669D
+# urxvt*color2: #A6E22E
+# urxvt*color10: #BEED5F
+# urxvt*color3: #FD971F
+# urxvt*color11: #E6DB74
+# urxvt*color4: #66D9EF
+# urxvt*color12: #66D9EF
+# urxvt*color5: #9E6FFE
+# urxvt*color13: #9E6FFE
+# urxvt*color6: #5E7175
+# urxvt*color14: #A3BABF
+# urxvt*color7: #CCCCC6
+# urxvt*color15: #F8F8F2

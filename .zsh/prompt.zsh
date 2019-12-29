@@ -100,7 +100,12 @@ if [[ -n "$IS_LOCAL" ]]; then
   HOST_PROMPT='%{$fg[blue]%}${HOSTNAME}'
 fi
 
-if [[ $HOSTNAME = "resona" ]]; then
+if [[ $HOSTNAME = "chtholly" ]]; then
+  PROMPT='%{$reset_color%}'
+  PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
+  PROMPT=${PROMPT}${HOST_PROMPT}
+  PROMPT=$PROMPT':%{$fg[yellow]%}${__ZSH_RPROMPT_DIR}%{$reset_color%}'   # rprompt_dir (git dir)
+elif [[ $HOSTNAME = "resona" ]]; then
   PROMPT='%{$reset_color%}'
   PROMPT=$PROMPT'${__ZSH_GIT_STATE}'
   PROMPT=${PROMPT}${HOST_PROMPT}

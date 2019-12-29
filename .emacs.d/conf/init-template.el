@@ -1,5 +1,0 @@
-(require 'autoinsert)
-(setq auto-insert-directory "~/.emacs.d/template/")
-(setq auto-insert-query t)
-(define-auto-insert "\\.tex\\'" "template.tex")
-(add-hook 'find-file-hooks 'auto-insert)
