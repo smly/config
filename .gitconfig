@@ -1,13 +1,13 @@
-[user]  
+[user]
         name = smly
         email = eowner@gmail.com
-[color] 
+[color]
         diff = auto
         status = auto
         branch = auto
         grep = auto
         interactive = auto
-[alias] 
+[alias]
         co = checkout
         ci = commit -a
         st = status
@@ -16,5 +16,5 @@
 [github]
         user = smly
         email = eowner@gmail.com
-[core]  
+[core]
         pager = less -c

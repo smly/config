@@ -52,6 +52,3 @@ alias gc="gcalcli"
 alias install='sudo apt-get install'
 alias search='sudo apt-cache search'
 alias show='sudo apt-cache show'
-
-alias ss='screencapture -i ~/ss/`date "+%Y-%m-%d-%H%M%S"`.png'
-alias sketch='emacs -nw sketch_`date "+%Y-%m%d"`'
