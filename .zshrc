@@ -38,3 +38,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+[ -e ~/.zsh/pfn.zsh ] && . ~/.zsh/pfn.zsh
