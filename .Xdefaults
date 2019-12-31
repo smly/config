@@ -18,8 +18,8 @@ Xft*lcdfilter:  lcddefault
 
 URxvt.font: 9x15
 
-urxvt.font: xft:SFMonoSquare Nerd Font:style=Regular:size=12:antialias=true
-urxvt.boldFont: xft:SFMonoSquare Nerd Font:style=Bold:size=12:antialias=true
+urxvt.font: xft:SFMonoSquare Nerd Font:style=Regular:size=16:antialias=true
+urxvt.boldFont: xft:SFMonoSquare Nerd Font:style=Bold:size=16:antialias=true
 
 ! urxvt.font: xft:SF Mono Square:style=Regular:size=12:antialias=true
 ! urxvt.boldFont: xft:SF Mono Square:style=Bold:size=12:antialias=true
@@ -38,4 +38,4 @@ urxvt.boldFont: xft:SFMonoSquare Nerd Font:style=Bold:size=12:antialias=true
 
 ! urxvt.font: xft:Ricty Diminished with\-icons:size=12:style=Regular
 ! urxvt.boldFont: xft:Ricty Diminished with\-icons:size=12:style=Bold
-urxvt.transparent: true
+urxvt.transparent: false
