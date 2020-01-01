@@ -1,0 +1,5 @@
+{
+        "diagnostic.enable": false,
+        "python.linting.enabled": false,
+        "python.jediPath": "~/.pyenv/versions/neovim3/lib/python3.7/site-packages/"
+}

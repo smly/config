@@ -30,12 +30,13 @@ urxvt.boldFont: xft:SFMonoSquare Nerd Font:style=Bold:size=16:antialias=true
 ! urxvt.font: xft:HackGen Console for Powerline:size=9:style=normal:antialias=true
 ! urxvt.boldFont: xft:HackGen Console for Powerline:size=9:style=bold:antialias=true
 
-! urxvt.font: xft:RictyDiscord Nerd Font:size=9:style=normal:antialias=true
-! urxvt.boldFont: xft:RictyDiscord Nerd Font:size=9:style=bold:antialias=true
+! urxvt.font: xft:RictyDiscord Nerd Font:size=12:style=normal:antialias=true
+! urxvt.boldFont: xft:RictyDiscord Nerd Font:size=12:style=bold:antialias=true
 
 ! urxvt.font: xft:Ricty Discord:size=9:style=normal
 ! urxvt.boldFont: xft:Ricty Discord:size=9:style=bold
 
 ! urxvt.font: xft:Ricty Diminished with\-icons:size=12:style=Regular
 ! urxvt.boldFont: xft:Ricty Diminished with\-icons:size=12:style=Bold
+
 urxvt.transparent: false

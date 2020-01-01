@@ -258,15 +258,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
-" syntastic
-" let g:syntastic_always_populate_loc_list=1
-" let g:syntastic_error_symbol='✗'
-" let g:syntastic_warning_symbol='⚠'
-" let g:syntastic_style_error_symbol = '✗'
-" let g:syntastic_style_warning_symbol = '⚠'
-" let g:syntastic_auto_loc_list=1
-" let g:syntastic_aggregate_errors = 1
-
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
@@ -329,6 +320,12 @@ call s:source_rc('airline.rc.vim')
 
 set ttimeoutlen=10
 set timeout timeoutlen=1000 ttimeoutlen=50
+
+" undo
+nmap <F5> :UndotreeToggle<CR>
+
+" カーソル移動
+nmap s <Plug>(easymotion-overwin-f2)
 
 " Markdown
 " ref: https://github.com/plasticboy/vim-markdown

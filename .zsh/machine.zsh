@@ -94,7 +94,6 @@ case $HOSTNAME in
         # export PATH=$HOME/anaconda/bin:$PATH
         export IS_LOCAL=`ip addr | grep 192.168.100.11`
         export IS_SA=`ssh-add -l 2>&1 | grep "4096 SHA256:ZxNA"`
-
         # export TERM=screen-256color
         alias vim=nvim
         alias sa='eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_rsa.github_*7; exec zsh'

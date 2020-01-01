@@ -34,6 +34,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-commentary'
+Plug 'mbbill/undotree'
+Plug 'easymotion/vim-easymotion'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
@@ -45,10 +48,19 @@ Plug 'majutsushi/tagbar'
 
 " Plug 'scrooloose/syntastic'
 Plug 'dense-analysis/ale'
+Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'drewtempelmeyer/palenight.vim'
+
+" snipets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Visual
 Plug 'bronson/vim-trailing-whitespace'

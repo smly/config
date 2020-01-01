@@ -24,6 +24,11 @@ if !exists('g:airline_powerline_fonts')
   let g:airline#extensions#readonly#symbol   = '⊘'
   let g:airline#extensions#linecolumn#prefix = '¶'
   let g:airline#extensions#paste#symbol      = 'ρ'
+
+  " ALE
+  let g:airline#extensions#ale#error_symbol = ' '
+  let g:airline#extensions#ale#warning_symbol = ' '
+
   let g:airline_symbols.linenr    = '␊'
   let g:airline_symbols.branch    = '⎇'
   let g:airline_symbols.paste     = 'ρ'
