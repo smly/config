@@ -1,0 +1,25 @@
+export GTK_IM_MODULE="fcitx"
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE="fcitx"
+
+# hsetroot -full wp.jpg
+# xmobar &
+# xcompmgr -c &
+# devilspie -a &
+
+fcitx-autostart &
+
+# urxvt & sleep .8s && transset -a
+# xmodmap ~/.xmodmap
+
+xset r rate 300 60
+xrdb -load ~/.Xdefaults; xrdb -merge ~/.Xresources
+
+exec evilwm \
+  -snap 10 \
+  -fn '-misc-fixed-*-*-*-*-*-*-*-*-*-*-jisx0208.1983-*' \
+  -mask1 mod4 \
+  -mask2 mod4 \
+  -bw 2 \
+  -fg red \
+  -term urxvt
