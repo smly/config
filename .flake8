@@ -1,0 +1,13 @@
+# ignore E203 ... https://github.com/psf/black#slices
+
+[flake8]
+ignore = I100,I101,I201,E226,E402,E203
+format = ${cyan}%(path)s${reset}:${yellow_bold}%(row)d${reset}:${green_bold}%(col)d${reset}: ${red_bold}%(code)s${reset} %(text)s
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    tests/*
+max-line-length = 89
+max-complexity = 10

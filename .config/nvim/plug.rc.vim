@@ -24,6 +24,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'dhruvasagar/vim-table-mode'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
@@ -46,10 +47,10 @@ Plug 'vim-scripts/CSApprox'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 
-" Plug 'scrooloose/syntastic'
 Plug 'dense-analysis/ale'
-Plug 'ryanoasis/vim-devicons'
-Plug 'sheerun/vim-polyglot'
+" 絵文字対応
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'sheerun/vim-polyglot'
 
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
@@ -65,6 +66,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Visual
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
+
+Plug 'reireias/vim-cheatsheet'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
