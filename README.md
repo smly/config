@@ -1,6 +1,6 @@
-# smly/config
-
 <div align="center"><img src="https://raw.githubusercontent.com/smly/config/master/dev_env_thumb.png" width="768"/></div>
+
+<br />
 
 Last update: 2020-01-02
 
