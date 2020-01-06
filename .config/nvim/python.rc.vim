@@ -25,6 +25,10 @@ let g:black_virtualenv = "~/.vim/black"
 " let g:jedi#completions_command = "<C-Space>"
 " let g:jedi#smart_auto_mappings = 0
 
+" vim-test
+let test#python#runner = 'pytest'
+let g:test#strategy = 'dispatch'
+
 " ALE
 "let g:ale_set_highlights = 0
 let g:ale_sign_column_always = 1

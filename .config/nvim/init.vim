@@ -337,12 +337,6 @@ set nofoldenable
 set conceallevel=2
 let g:vim_markdown_conceal = 0
 
-" diff
-" highlight DiffAdd cterm=bold ctermbg=17 gui=bold guibg=slateblue
-" highlight DiffDelete ctermbg=6 guibg=coral
-" highlight DiffChange ctermbg=22 guibg=darkgreen
-" highlight DiffText cterm=bold ctermbg=52 gui=bold guibg=olivedrab
-
 set splitright
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis

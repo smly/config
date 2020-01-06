@@ -146,6 +146,12 @@ Plug 'rust-lang/rust.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
+Plug 'janko/vim-test'
+Plug 'tpope/vim-dispatch'
+Plug 'aliev/vim-compiler-python'
+Plug 'thinca/vim-quickrun'
+Plug 'simeji/winresizer'
+
 Plug 'psf/black'
 
 Plug 'zxqfl/tabnine-vim'
