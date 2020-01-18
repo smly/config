@@ -1,0 +1,80 @@
+source "gpg -d ~/.config/neomutt/passwds.gpg |"
+source ~/.config/neomutt/colorscheme_dracula.muttrc
+
+set realname = "Kohei Ozaki"
+set hostname = "gmail.com"
+set from     = "eowner@gmail.com"
+
+set smtp_url = "smtps://eowner@gmail.com@smtp.gmail.com:587/"
+set imap_user = "eowner@gmail.com"
+set folder = "imaps://imap.gmail.com:993"
+
+# SSL
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+# Basic config
+set sidebar_visible = yes
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+set use_from = yes
+set editor = "vim"
+
+set charset         = "utf-8"
+set assumed_charset = "utf-8:iso-2022-jp:euc-jp:shift_jis"
+set mbox_type       = "maildir"
+
+# set trash           = "+[Gmail]/Trash"
+# set ad_label        = "+[Gmail]/ad"
+set spoolfile       = "+INBOX"
+set record="+[Gmail]/Sent Mail"
+set postponed="+[Gmail]/Drafts"
+
+mailboxes =INBOX\
+          =me/name\
+          =gh/optuna\
+          =[Gmail]/Sent\ Mail\
+          =[Gmail]/Drafts\
+          =[Gmail]/Spam\
+          =[Gmail]/Trash
+
+# https://www.neomutt.org/guide/reference search sleep_time for additional info
+set sleep_time=0 # be faster
+set beep=no # no beep sound
+
+set sort = threads
+set sort_aux = reverse-last-date-received
+
+# set sort=reverse-date   # default sorting by date
+# # When sorting by threads, this variable controls how threads are sorted
+# # in relation to other threads, and how the branches of the thread trees are sorted.
+# set sort_aux=last-date-received
+# # Index page format. Default "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+set date_format="%y-%m-%d %T"
+set index_format="%4C %Z %[%Y-%m-%d %H:%m] %-15.15L (%?l?%4l&%4c?) %s"
+
+# virtual spoolfile
+# set virtual_spoolfile = yes
+# set folder = notmuch-root-folder
+# source ~/.mailboxes
+
+set certificate_file = "~/.mutt/certificates"
+set mailcap_path = "~/.mutt/mailcap"
+auto_view text/html
+
+# Cache
+set header_cache_backend=tokyocabinet
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+
+# Keybindings
+# bind index G imap-fetch-mail
+bind pager g top
+bind pager G bottom
+bind attach,index g first-entry
+bind attach,index G last-entry
+
+bind index,pager \CP sidebar-prev                 # Ctrl-n to select next folder
+bind index,pager \CN sidebar-next                 # Ctrl-p to select previous folder
+bind index,pager \CI sidebar-open                 # Ctrl-o to open selected folder
+bind index,pager \CB sidebar-toggle-visible       # Ctrl-b to toggle visibility of the sidebar
