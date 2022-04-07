@@ -1,20 +1,26 @@
 [user]
-        name = smly
-        email = eowner@gmail.com
+  name = smly
+  email = eowner@gmail.com
+[includeIf "gitdir:~/gitws/ubie/**"]
+  path = ~/.gitconfig.work
+
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        grep = auto
-        interactive = auto
+  diff = auto
+  status = auto
+  branch = auto
+  grep = auto
+  interactive = auto
+
 [alias]
-        co = checkout
-        ci = commit -a
-        st = status
-        up = pull --rebase
-        graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%cn] %Cgreen%d%Creset %s\" --all --date=local
+  co = checkout
+  ci = commit -a
+  st = status
+  up = pull --rebase
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%cn] %Cgreen%d%Creset %s\" --all --date=local
+
 [github]
-        user = smly
-        email = eowner@gmail.com
+  user = smly
+  email = eowner@gmail.com
+
 [core]
-        pager = less -c
+  pager = less -c
