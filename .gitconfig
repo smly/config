@@ -1,6 +1,6 @@
 [user]
   name = smly
-  email = eowner@gmail.com
+  email = 19337+smly@users.noreply.github.com
 [includeIf "gitdir:~/gitws/ubie/**"]
   path = ~/.gitconfig.work
 
