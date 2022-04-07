@@ -1,0 +1,34 @@
+shell = "zsh"
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
+
+[plugins.compinit]
+inline = 'autoload -Uz compinit && compinit'
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+apply = ["defer"]
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.ohmyzsh-lib]
+github = "ohmyzsh/ohmyzsh"
+dir = "lib"
+use = ["{completion,key-bindings,directories}.zsh"]
+
+[plugins.asdf]
+github = "asdf-vm/asdf"
+
+[plugins.zsh-better-npm-completion]
+github = "lukechilds/zsh-better-npm-completion"
+
+[plugins.aws_zsh_completer]
+remote = "https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer.sh"
